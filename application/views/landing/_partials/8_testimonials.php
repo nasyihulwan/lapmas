@@ -30,7 +30,7 @@
                                 <i><img src="assets/images/testimonial-icon.png" alt=""></i>
                                 <p><?= $u->ulasan ?></p>
                                 <div class="user-image">
-                                    <img src="http://placehold.it/60x60" alt="">
+                                    <img src="https://placehold.it/60x60" alt="">
                                 </div>
                                 <div class="team-info">
                                     <h3 class="user-name">
