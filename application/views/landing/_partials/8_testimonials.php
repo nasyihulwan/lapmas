@@ -57,11 +57,31 @@
             </div>
 
         </div>
-        <div class="col-sm-12 swiper-pagination"></div>
+        <div class="col-sm-12 swiper-pagination mb-3"></div>
+
+        <div class="col-12">
+            <input type="hidden"
+                value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Sangat Puas'])->num_rows() ?>"
+                id="sangatPuas" class="sangatPuas">
+            <input type="hidden"
+                value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Puas'])->num_rows() ?>"
+                id="puas" class="puas">
+            <input type="hidden"
+                value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Kurang Puas'])->num_rows() ?>"
+                id="kurangPuas" class="kurangPuas">
+            <input type="hidden"
+                value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Tidak Puas'])->num_rows() ?>"
+                id="tidakPuas" class="tidakPuas">
+            <input type="hidden"
+                value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Sangat Tidak Puas'])->num_rows() ?>"
+                id="sangatTidakPuas" class="sangatTidakPuas">
+            <div id="chart-ulasan"></div>
+        </div>
     </div>
 </section>
 <!-- ***** Testimonials End ***** -->
 
+<?php $this->load->view('__partials/_js.php'); ?>
 <!-- Swiper JS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!-- Initialize Swiper -->
@@ -81,4 +101,48 @@ var swiper = new Swiper(".mySwiper", {
         prevEl: ".swiper-button-prev",
     },
 });
+
+// var sangatPuas = document.getElementById('sangatPuas').value;
+// var puas = document.getElementById('puas').value;
+// var tidakPuas = document.getElementById('tidakPuas').value;
+// var kurangPuas = document.getElementById('kurangPuas').value;
+// var sangatTidakPuas = document.getElementById('sangatTidakPuas').value;
+
+// var optionsUlasan = {
+//     annotations: {
+//         position: "back",
+//     },
+//     dataLabels: {
+//         enabled: false,
+//     },
+//     chart: {
+//         type: "bar",
+//         height: 300,
+//     },
+//     fill: {
+//         opacity: 1,
+//     },
+//     plotOptions: {},
+//     series: [{
+//         name: "sales",
+//         data: [sangatPuas, puas, tidakPuas, kurangPuas, sangatTidakPuas]
+//     }, ],
+//     colors: "#9694FF",
+//     xaxis: {
+//         categories: [
+//             "Sangat Puas",
+//             "Puas",
+//             "Kurang Puas",
+//             "Tidak Puas",
+//             "Sangat Tidak Puas",
+//         ],
+//     },
+// };
+
+// var chartUlasan = new ApexCharts(
+//     document.querySelector("#chart-ulasan"),
+//     optionsUlasan
+// );
+
+// chartUlasan.render();
 </script>

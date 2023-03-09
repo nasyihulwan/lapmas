@@ -40,14 +40,14 @@ var optionsUlasan = {
     },
     chart: {
         type: "bar",
-        height: 300,
+        height: 350,
     },
     fill: {
         opacity: 1,
     },
     plotOptions: {},
     series: [{
-        name: "sales",
+        name: "Jumlah Ulasan",
         data: [sangatPuas, puas, tidakPuas, kurangPuas, sangatTidakPuas]
     }, ],
     colors: "#9694FF",
