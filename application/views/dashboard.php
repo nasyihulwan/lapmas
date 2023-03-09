@@ -123,18 +123,33 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row">
+                <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Statistik Pengunjung</h4>
+                                <h4>Ulasan Masyarakat</h4>
                             </div>
                             <div class="card-body">
-                                <div id="chart-profile-visit"></div>
+                                <input type="hidden"
+                                    value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Sangat Puas'])->num_rows() ?>"
+                                    id="sangatPuas" class="sangatPuas">
+                                <input type="hidden"
+                                    value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Puas'])->num_rows() ?>"
+                                    id="puas" class="puas">
+                                <input type="hidden"
+                                    value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Kurang Puas'])->num_rows() ?>"
+                                    id="kurangPuas" class="kurangPuas">
+                                <input type="hidden"
+                                    value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Tidak Puas'])->num_rows() ?>"
+                                    id="tidakPuas" class="tidakPuas">
+                                <input type="hidden"
+                                    value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Sangat Tidak Puas'])->num_rows() ?>"
+                                    id="sangatTidakPuas" class="sangatTidakPuas">
+                                <div id="chart-ulasan"></div>
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
             <div class="col-12 col-lg-3">
                 <div class="card">

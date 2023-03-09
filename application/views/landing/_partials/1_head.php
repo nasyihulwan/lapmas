@@ -23,6 +23,7 @@
         ?>
     </title>
 
+    <link rel="shortcut icon" href="<?= base_url() ?>assets/images/logo/lapmas_logo.png" type="image/png">
     <!-- ===== Link Swiper's CSS ===== -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="<?= base_url() ?>assets/landing/css/carousel.css" />
@@ -38,7 +39,6 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/landing/css/templatemo-softy-pinko.css">
 
     <link rel="stylesheet" href="<?= base_url() ?>assets/landing/css/dropify.css">
-
 
 
 </head>

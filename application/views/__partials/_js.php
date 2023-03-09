@@ -24,6 +24,52 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+<script>
+var sangatPuas = document.getElementById('sangatPuas').value;
+var puas = document.getElementById('puas').value;
+var tidakPuas = document.getElementById('tidakPuas').value;
+var kurangPuas = document.getElementById('kurangPuas').value;
+var sangatTidakPuas = document.getElementById('sangatTidakPuas').value;
+
+var optionsUlasan = {
+    annotations: {
+        position: "back",
+    },
+    dataLabels: {
+        enabled: false,
+    },
+    chart: {
+        type: "bar",
+        height: 300,
+    },
+    fill: {
+        opacity: 1,
+    },
+    plotOptions: {},
+    series: [{
+        name: "sales",
+        data: [sangatPuas, puas, tidakPuas, kurangPuas, sangatTidakPuas]
+    }, ],
+    colors: "#9694FF",
+    xaxis: {
+        categories: [
+            "Sangat Puas",
+            "Puas",
+            "Kurang Puas",
+            "Tidak Puas",
+            "Sangat Tidak Puas",
+        ],
+    },
+};
+
+var chartUlasan = new ApexCharts(
+    document.querySelector("#chart-ulasan"),
+    optionsUlasan
+);
+
+chartUlasan.render();
+</script>
+
 </body>
 
 </html>
