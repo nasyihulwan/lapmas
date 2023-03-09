@@ -65,7 +65,7 @@
                                     <a href="<?= site_url() ?>pengaduan/proses">Proses Tidak Lanjut</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="<?= site_url() ?>">Selesai</a>
+                                    <a href="<?= site_url() ?>pengaduan/selesai">Selesai</a>
                                 </li>
                             </ul>
                         </li>

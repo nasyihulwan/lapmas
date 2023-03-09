@@ -20,7 +20,13 @@ class M_Pengaduan extends CI_Model
 
     function queryDetailPengaduan($id_pengaduan)
     {
-        return $this->db->get_where('pengaduan', ['id_pengaduan' => $id_pengaduan])->row_array();
+        // return $this->db->get_where('pengaduan', ['id_pengaduan' => $id_pengaduan])->row_array();
+
+        $this->db->where('pengaduan.id_pengaduan', $id_pengaduan);
+        $this->db->select('pengaduan.*, pengaduan.id_pengaduan as p_id, tanggapan.*, tanggapan.id_pengaduan as t_id');
+        $this->db->from('pengaduan');
+        $this->db->join('tanggapan', 'pengaduan.id_pengaduan = tanggapan.id_pengaduan', 'LEFT');
+        return $this->db->get()->row_array();
     }
 
     function updateSelesai() {

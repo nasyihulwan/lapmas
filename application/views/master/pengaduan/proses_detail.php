@@ -17,30 +17,32 @@
             </div>
         </div>
 
-        <?php 
-        // add 3 days to date
-                                            if ($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() >= 1) {
-                                                $uploadDate = $getDate['tgl_tanggapan'];
-                                                $date = strtotime($uploadDate);
-                                                $date = strtotime("+3 day", $date);
-                                                $date = date('Y-m-d', $date);
-                                            } ?>
+
 
 
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-12">
                     <div class="card">
+                        <?= $this->session->flashdata('message') ?>
                         <div class="card-content">
                             <div class="card-body">
-                                <?php if ( 
-                                    $this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() >= 1 && 
-                                    date('Y-m-d') >= $date) 
+                                <?php 
+                                // add 3 days to date
+                                if ($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() >= 1) {
+                                    $uploadDate = $getDate['tgl_tanggapan'];
+                                    $date = strtotime($uploadDate);
+                                    $date = strtotime("+3 day", $date);
+                                    $date = date('Y-m-d', $date);
+                                  if (  
+                                    date('Y-m-d') >= $date || $queryAduan['tanggapan_balik'] != null) 
                                 { ?>
-                                <form method="POST" action="">
+                                <form method="POST"
+                                    action="<?= site_url('pengaduan/proses/updateSelesai/') ?><?= $queryAduan['p_id'] ?>">
+                                    <?php } ?>
                                     <?php } else if($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() == 0) { ?>
                                     <form method="POST"
-                                        action="<?= site_url('pengaduan/proses/insertTanggapan/') ?><?= $queryAduan['id_pengaduan'] ?>">
+                                        action="<?= site_url('pengaduan/proses/insertTanggapan/') ?><?= $queryAduan['p_id'] ?>">
                                         <?php } ?>
 
                                         <div class="row">
@@ -52,7 +54,7 @@
                                                     <input type="text" name="aduan"
                                                         value="<?= $queryAduan['id_pengaduan'] ?>" hidden>
                                                     <input type="text" name="id_pengaduan" class="form-control"
-                                                        value="<?= $queryAduan['id_pengaduan'] ?>" disabled>
+                                                        value="<?= $queryAduan['p_id'] ?>" disabled>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-12">
@@ -115,7 +117,7 @@
                                                             if ($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() >= 1) {
                                                                 echo "disabled";
                                                             } ?>>
-<?php if ($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() >= 1) {
+                                                            <?php if ($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() >= 1) {
                                                                 echo htmlspecialchars($getDate['tanggapan']);
                                                             } ?>
                                                         </textarea>
@@ -132,18 +134,18 @@
                                                 $date = strtotime($uploadDate);
                                                 $date = strtotime("+3 day", $date);
                                                 $date = date('Y-m-d', $date);
-                                            } 
-                                            if (
-                                                $this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() >= 1 && 
-                                                date('Y-m-d') >= $date
-                                            ) { ?>
+                                             
+                                                if (
+                                                date('Y-m-d') >= $date || $queryAduan['tanggapan_balik'] != null
+                                                ) { ?>
                                                 <button type="submit" class="btn btn-primary me-1 mb-1">SELESAI</button>
-                                                <?php } else if($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() == 0) { ?>
-                                                <button type="submit"
-                                                    class="btn btn-primary me-1 mb-1">TANGGAPI</button>
                                                 <?php } else { ?>
                                                 <button class="btn btn-primary me-1 mb-1">MENUNGGU TANGGAPAN
                                                     BALIK</button>
+                                                <?php } ?>
+                                                <?php } else if($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() == 0) { ?>
+                                                <button type="submit"
+                                                    class="btn btn-primary me-1 mb-1">TANGGAPI</button>
                                                 <?php } ?>
                                             </div>
                                         </div>

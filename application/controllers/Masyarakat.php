@@ -58,4 +58,9 @@ class Masyarakat extends CI_Controller
             $this->M_Masyarakat->_sendUlasan();
         }
     }
+
+    public function tanggapanBalik() {
+        $this->M_Masyarakat->_sendTanggapanBalik();
+        
+    }
 }

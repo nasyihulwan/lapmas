@@ -14,15 +14,10 @@
                     </p>
                 </div>
 
-
-
                 <?php $this->load->view("__partials/_breadcrumb.php") ?>
-
 
             </div>
         </div>
-
-
 
         <section id="multiple-column-form">
             <div class="row match-height">
@@ -30,16 +25,14 @@
                     <div class="card">
                         <div class="card-content">
                             <div class="card-body">
-                                <form
-                                    action="<?= site_url('pengaduan/verifikasi/update/') ?><?=$queryAduan['id_pengaduan']?>"
+                                <form action="<?= site_url('pengaduan/vnv/update/') ?><?=$queryAduan['p_id']?>"
                                     method="POST">
                                     <div class="row">
                                         <div class="col-md-12 col-12">
                                             <div class="form-group">
                                                 <label for="first-name-column">ID Pengaduan</label>
                                                 <input type="text" class="form-control"
-                                                    value="<?= $queryAduan['id_pengaduan'] ?>" name="id_pengaduan"
-                                                    disabled>
+                                                    value="<?= $queryAduan['p_id'] ?>" name="id_pengaduan" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-12">
@@ -92,7 +85,8 @@
                                             </div>
                                         </div>
                                         <div class="col-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-1 mb-1">Setujui</button>
+                                            <a href="#" id="setujui"
+                                                class="setujui btn btn-primary me-1 mb-1">Setujui</a>
                                         </div>
                                     </div>
                                 </form>
@@ -102,7 +96,9 @@
                 </div>
             </div>
         </section>
-
+        <!-- <button id="password1" class="btn btn-outline-info btn-lg btn-block">
+            SETUJUI
+        </button> -->
 
         <!-- Modal -->
         <div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="galleryModalTitle"
@@ -111,7 +107,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="galleryModalTitle">
-                            <?= $queryAduan['id_pengaduan'] . ' - ' . $queryAduan['nik'] . ' - ' . $queryAduan['foto']?>
+                            <?= $queryAduan['p_id'] . ' - ' . $queryAduan['nik'] . ' - ' . $queryAduan['foto']?>
                         </h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <i data-feather="x"></i>

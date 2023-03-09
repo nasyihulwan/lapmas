@@ -4,7 +4,12 @@
 
 <script src="<?= base_url() ?>assets/js/bootstrap.js"></script>
 <script src="<?= base_url() ?>assets/js/app.js"></script>
+
+<script src="<?= base_url() ?>assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+<script src="<?= base_url() ?>assets/js/pages/sweetalert2.js"></script>
+
 <script src="<?= base_url() ?>assets/js/pages/horizontal-layout.js"></script>
+
 
 <script src="<?= base_url() ?>assets/extensions/choices.js/public/assets/scripts/choices.js"></script>
 <script src="<?= base_url() ?>assets/js/pages/form-element-select.js"></script>
@@ -68,6 +73,42 @@ var chartUlasan = new ApexCharts(
 );
 
 chartUlasan.render();
+</script>
+
+<script>
+document.getElementById("setujui").addEventListener("click", async (e) => {
+    const pernyataan = "Saya menyetujui laporan pengaduan ini";
+    const {
+        value: konfirText
+    } = await Swal.fire({
+        title: "Konfirmasi",
+        input: "text",
+        inputLabel: 'Ketik "Saya menyetujui laporan pengaduan ini" ',
+        inputPlaceholder: "Saya menyetujui laporan pengaduan ini",
+        preConfirm: (value) => {
+            if (!value || value != pernyataan) {
+                Swal.showValidationMessage(
+                    'Mohon input pernyataan dengan benar!'
+                )
+            }
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Setujui',
+    }).then((result) => {
+        // var href = $(this).attr("data-href");
+        if (result.isConfirmed) {
+            Swal.fire({
+                icon: "success",
+                title: "Laporan pengaduan berhasil disetujui!",
+            }).then((result) => {
+                window.location =
+                    `<?= site_url('pengaduan/vnv/update/') ?><?=$queryAduan['p_id']?>`;
+            });
+        }
+    })
+
+
+});
 </script>
 
 </body>

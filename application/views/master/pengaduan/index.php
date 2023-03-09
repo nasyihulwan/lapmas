@@ -24,6 +24,7 @@
 
         <!-- Basic Tables start -->
         <section class="section">
+            <?= $this->session->flashdata('message') ?>
             <div class="card">
                 <div class="card-body">
                     <table class="table" id="table1">
@@ -32,6 +33,9 @@
                                 <th>No</th>
                                 <th>ID Pengaduan</th>
                                 <th>Tanggal Pengaduan</th>
+                                <?php if ($this->uri->segment(2) == 'selesai') { ?>
+                                <th>Tanggal Selesai</th>
+                                <?php } ?>
                                 <th>NIK</th>
                                 <th>Judul Laporan</th>
                                 <th>Isi Laporan</th>
@@ -46,6 +50,9 @@
                                 <td><?= $no++ ?></td>
                                 <td><?= $r->id_pengaduan ?></td>
                                 <td><?= $r->tgl_pengaduan ?></td>
+                                <?php if ($this->uri->segment(2) == 'selesai') { ?>
+                                <td><?= $r->tgl_selesai ?></td>
+                                <?php } ?>
                                 <td><?= $r->nik ?></td>
                                 <td><?= $r->judul_laporan ?></td>
                                 <td>
@@ -64,13 +71,12 @@
                                     <?php if ($this->uri->segment(2) == 'vnv') { ?>
                                     <a href="<?= site_url() ?>pengaduan/vnv/detail/<?= $r->id_pengaduan ?>"
                                         class="btn badge bg-info">Detail</a>
-                                    <a href="<?= site_url() ?>pengaduan/vnv/update/<?= $r->id_pengaduan ?>"
-                                        class="btn badge bg-success">Setujui</a>
-                                    <?php } else { ?>
+                                    <?php } else if ($this->uri->segment(2) == 'proses') { ?>
                                     <a href="<?= site_url() ?>pengaduan/proses/detail/<?= $r->id_pengaduan ?>"
                                         class="btn badge bg-info">Detail</a>
-                                    <!-- <a href="<?= site_url() ?>pengaduan/validasi/update/<?= $r->id_pengaduan ?>"
-                                        class="btn badge bg-success">Setujui</a> -->
+                                    <?php } else { ?>
+                                    <a href="<?= site_url() ?>pengaduan/selesai/detail/<?= $r->id_pengaduan ?>"
+                                        class="btn badge bg-info">Detail</a>
                                     <?php } ?>
                                 </td>
                                 <!-- Modal -->
@@ -118,7 +124,6 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-
                                                 <div id="Gallerycarousel" class="carousel slide carousel-fade"
                                                     data-bs-ride="carousel">
                                                     <div class="carousel-inner">

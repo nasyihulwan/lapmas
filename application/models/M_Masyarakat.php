@@ -8,11 +8,14 @@ class M_Masyarakat extends CI_Model
         return $this->db->query('SELECT * FROM masyarakat WHERE nik NOT LIKE "ANONYMOUS%"');
     }
 
-    // function _sendUlasan()
-    // {
-    //     $getLastId = $this->db->query("SELECT id_ulasan FROM ulasan_masyarakat ORDER BY id_ulasan DESC LIMIT 1")->row_array();
-    //     $nomorTerakhir = $getLastId['id_ulasan'];
-    // }
+    function _sendTanggapanBalik()
+    {
+        $this->db->set('tanggapan_balik', $this->input->post('tanggapan_balik'));
+        $this->db->where('id_pengaduan', $this->uri->segment(3));
+        $this->db->update('tanggapan');
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Tanggapan berhasil dikirim</div>');
+        redirect('masyarakat/laporan');
+    }
 
     function _sendUlasan()
     {

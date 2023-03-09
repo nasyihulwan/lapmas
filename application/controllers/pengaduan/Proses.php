@@ -30,7 +30,7 @@ class Proses extends CI_Controller
     {
         $data['queryAduan'] = $this->M_Pengaduan->queryDetailPengaduan($id_pengaduan);
         $data['getDate'] = $this->M_Tanggapan->getDate($id_pengaduan);
-        $data['title'] = 'Data Pengaduan - Verifikasi Detail';
+        $data['title'] = 'Data Pengaduan - Proses Detail';
         $data['subtitle'] = 'Pastikan kebenaran laporan sebelum melakukan verifikasi';
         
         
@@ -41,7 +41,7 @@ class Proses extends CI_Controller
         $this->load->view('__partials/_js');
     }
 
-    public function insertTanggapan()
+    public function insertTanggapan($id_pengaduan)
     {
         $id_petugas = $this->input->post('id_petugas');
         $id_pengaduan = $this->uri->segment(4);
@@ -57,6 +57,20 @@ class Proses extends CI_Controller
         ];
         
         $this->db->insert('tanggapan', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Tanggapan berhasil dikirim</div>');
+        redirect('pengaduan/proses');
+    }
+
+    public function updateSelesai($id_pengaduan)
+    {
+        $data = [
+            'status' => 'selesai',
+            'tgl_selesai' => date('Y-m-d')
+        ];
+        $this->db->set($data);
+        $this->db->where('id_pengaduan', $id_pengaduan);
+        $this->db->update('pengaduan');
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Status berhasil diubah!</div>');
         redirect('pengaduan/proses');
     }
 }

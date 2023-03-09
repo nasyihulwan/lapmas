@@ -33,7 +33,7 @@ class Vnv extends CI_Controller
         $this->load->view('__partials/_sidebar');
         $this->load->view('master/pengaduan/vnv_detail', $data);
         $this->load->view('__partials/_footer');
-        $this->load->view('__partials/_js');
+        $this->load->view('__partials/_js', $data);
         
     }
 
