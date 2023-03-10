@@ -38,7 +38,6 @@ class Auth extends CI_Controller
         } else {
             $this->M_Auth->_login();
         }
-        
     }
 
     public function register()
@@ -49,7 +48,7 @@ class Auth extends CI_Controller
             redirect('dashboard');
         }
         
-        $this->form_validation->set_rules('nik', 'NIK', 'required|trim|is_unique[masyarakat.nik]', [
+        $this->form_validation->set_rules('nik', 'NIK', 'numeric|required|trim|is_unique[masyarakat.nik]', [
             'is_unique' => 'NIK already exists!'
         ]);
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');

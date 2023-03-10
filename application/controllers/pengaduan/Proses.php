@@ -61,16 +61,20 @@ class Proses extends CI_Controller
         redirect('pengaduan/proses');
     }
 
-    public function updateSelesai($id_pengaduan)
+    public function updateSelesai($id_pengaduan )
     {
-        $data = [
-            'status' => 'selesai',
-            'tgl_selesai' => date('Y-m-d')
-        ];
-        $this->db->set($data);
-        $this->db->where('id_pengaduan', $id_pengaduan);
-        $this->db->update('pengaduan');
-        $this->session->set_flashdata('message', '<div class="alert alert-success">Status berhasil diubah!</div>');
-        redirect('pengaduan/proses');
+        $data['queryAduan'] = $this->M_Pengaduan->queryDetailPengaduan($id_pengaduan);
+        $data['getDate'] = $this->M_Tanggapan->getDate($id_pengaduan);
+        $data['title'] = 'Data Pengaduan - Proses Detail';
+        $data['subtitle'] = 'Pastikan kebenaran laporan sebelum melakukan verifikasi';
+        if ($this->form_validation->run() == false) {
+            $this->load->view('__partials/_head');
+            $this->load->view('__partials/_sidebar');
+            $this->load->view('master/pengaduan/update_proses', $data);
+            $this->load->view('__partials/_footer');
+            $this->load->view('__partials/_js');
+        } else {
+            redirect('dashboard');
+        }
     }
 }

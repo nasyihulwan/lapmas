@@ -17,9 +17,6 @@
             </div>
         </div>
 
-
-
-
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-12">
@@ -37,83 +34,81 @@
                                   if (  
                                     date('Y-m-d') >= $date || $queryAduan['tanggapan_balik'] != null) 
                                 { ?>
+                                <?= form_open_multipart('pengaduan/proses/updateSelesai/2'); ?>
+                                <?php } ?>
+                                <?php } else if($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() == 0) { ?>
                                 <form method="POST"
-                                    action="<?= site_url('pengaduan/proses/updateSelesai/') ?><?= $queryAduan['p_id'] ?>">
+                                    action="<?= site_url('pengaduan/proses/insertTanggapan/') ?><?= $queryAduan['p_id'] ?>">
                                     <?php } ?>
-                                    <?php } else if($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() == 0) { ?>
-                                    <form method="POST"
-                                        action="<?= site_url('pengaduan/proses/insertTanggapan/') ?><?= $queryAduan['p_id'] ?>">
-                                        <?php } ?>
 
-                                        <div class="row">
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <label for="first-name-column">ID Pengaduan</label>
-                                                    <input type="text" name="id_petugas"
-                                                        value="<?= $this->session->userdata('id_petugas') ?>" hidden>
-                                                    <input type="text" name="aduan"
-                                                        value="<?= $queryAduan['id_pengaduan'] ?>" hidden>
-                                                    <input type="text" name="id_pengaduan" class="form-control"
-                                                        value="<?= $queryAduan['p_id'] ?>" disabled>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">ID Pengaduan</label>
+                                                <input type="text" name="id_petugas"
+                                                    value="<?= $this->session->userdata('id_petugas') ?>" hidden>
+                                                <input type="text" name="aduan"
+                                                    value="<?= $queryAduan['id_pengaduan'] ?>" hidden>
+                                                <input type="text" name="id_pengaduan" class="form-control"
+                                                    value="<?= $queryAduan['p_id'] ?>" disabled>
                                             </div>
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <label for="first-name-column">NIK</label>
-                                                    <input type="text" id="first-name-column" class="form-control"
-                                                        value="<?= $queryAduan['nik'] ?>" disabled>
-                                                </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">NIK</label>
+                                                <input type="text" id="first-name-column" class="form-control"
+                                                    value="<?= $queryAduan['nik'] ?>" disabled>
                                             </div>
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <label for="first-name-column">Tanggal Pengaduan</label>
-                                                    <input type="text" name="tgl_pengaduan" class="form-control"
-                                                        value="<?= $queryAduan['tgl_pengaduan'] ?>" disabled>
-                                                </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">Tanggal Pengaduan</label>
+                                                <input type="text" name="tgl_pengaduan" class="form-control"
+                                                    value="<?= $queryAduan['tgl_pengaduan'] ?>" disabled>
                                             </div>
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <div class="form-group mb-3">
-                                                        <label for="exampleFormControlTextarea1" class="form-label">Isi
-                                                            Laporan</label>
-                                                        <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                            rows="9" disabled>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <div class="form-group mb-3">
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Isi
+                                                        Laporan</label>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                        rows="9" disabled>
                                                         <?php echo htmlspecialchars($queryAduan['isi_laporan']); ?>
                                                     </textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Foto</label>
+                                                <div class="row gallery" data-bs-toggle="modal"
+                                                    data-bs-target="#galleryModal">
+                                                    <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
+                                                        <a href="#">
+                                                            <img class="w-100 active"
+                                                                src="<?= base_url() ?>assets/images/laporan/<?= $queryAduan['foto'] ?>"
+                                                                data-bs-target="#Gallerycarousel" data-bs-slide-to="0">
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <label class="form-label">Foto</label>
-                                                    <div class="row gallery" data-bs-toggle="modal"
-                                                        data-bs-target="#galleryModal">
-                                                        <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
-                                                            <a href="#">
-                                                                <img class="w-100 active"
-                                                                    src="<?= base_url() ?>assets/images/laporan/<?= $queryAduan['foto'] ?>"
-                                                                    data-bs-target="#Gallerycarousel"
-                                                                    data-bs-slide-to="0">
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">Status</label>
+                                                <input type="text" id="first-name-column" class="form-control"
+                                                    value="<?= ucfirst($queryAduan['status']) ?>"
+                                                    name="status_pengaduan" disabled>
                                             </div>
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <label for="first-name-column">Status</label>
-                                                    <input type="text" id="first-name-column" class="form-control"
-                                                        value="<?= ucfirst($queryAduan['status']) ?>"
-                                                        name="status_pengaduan" disabled>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <div class="form-group mb-3">
-                                                        <label for="exampleFormControlTextarea1"
-                                                            class="form-label">Tanggapan</label>
-                                                        <textarea name="tanggapan" class="form-control"
-                                                            id="exampleFormControlTextarea1" rows="9" required <?php 
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <div class="form-group mb-3">
+                                                    <label for="exampleFormControlTextarea1"
+                                                        class="form-label">Tanggapan Petugas</label>
+                                                    <textarea name="tanggapan" class="form-control"
+                                                        id="exampleFormControlTextarea1" rows="9" required <?php 
                                                             if ($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() >= 1) {
                                                                 echo "disabled";
                                                             } ?>>
@@ -121,12 +116,21 @@
                                                                 echo htmlspecialchars($getDate['tanggapan']);
                                                             } ?>
                                                         </textarea>
-                                                    </div>
                                                 </div>
                                             </div>
-
-                                            <div class="col-12 d-flex justify-content-end">
-                                                <?php 
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <div class="form-group mb-3">
+                                                    <label>Foto Bukti</label>
+                                                    <input type="file" class="dropify" name="foto_bukti"
+                                                        data-allowed-file-extensions="jpg png jpeg">
+                                                    <?= form_error('foto_bukti', '<h6 class="text-danger pl-2">', '</h6>') ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <?php 
                             
                                                 // add 3 days to date
                                             if ($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() >= 1) {
@@ -138,18 +142,17 @@
                                                 if (
                                                 date('Y-m-d') >= $date || $queryAduan['tanggapan_balik'] != null
                                                 ) { ?>
-                                                <button type="submit" class="btn btn-primary me-1 mb-1">SELESAI</button>
-                                                <?php } else { ?>
-                                                <button class="btn btn-primary me-1 mb-1">MENUNGGU TANGGAPAN
-                                                    BALIK</button>
-                                                <?php } ?>
-                                                <?php } else if($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() == 0) { ?>
-                                                <button type="submit"
-                                                    class="btn btn-primary me-1 mb-1">TANGGAPI</button>
-                                                <?php } ?>
-                                            </div>
+                                            <button type="submit" class="btn btn-primary me-1 mb-1">SELESAI</button>
+                                            <?php } else { ?>
+                                            <button class="btn btn-primary me-1 mb-1">MENUNGGU TANGGAPAN
+                                                BALIK</button>
+                                            <?php } ?>
+                                            <?php } else if($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() == 0) { ?>
+                                            <button type="submit" class="btn btn-primary me-1 mb-1">TANGGAPI</button>
+                                            <?php } ?>
                                         </div>
-                                    </form>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

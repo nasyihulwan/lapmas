@@ -39,5 +39,6 @@
 
     <link rel="stylesheet" href="<?= base_url() ?>assets/extensions/sweetalert2/sweetalert2.min.css" />
 
+    <link rel="stylesheet" href="<?= base_url() ?>assets/landing/css/dropify.css">
 
 </head>

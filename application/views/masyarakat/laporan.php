@@ -19,6 +19,7 @@
                                             <th>Judul Laporan</th>
                                             <th style="width: 10%">Foto</th>
                                             <th>Status</th>
+                                            <th style="width: 20%">Bukti Selesai</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -38,8 +39,22 @@
                                             <?php } else { ?>
                                             <td><span class="badge bg-success">Selesai</span></td>
                                             <?php } ?>
+                                            <?php if ($l->status == 'selesai') { ?>
+                                            <td>
+                                                <img src="<?= base_url() ?>assets/images/laporan/bukti_selesai/<?= $l->foto_bukti ?>"
+                                                    alt="foto_bukti" style="max-width: 55%;">
+                                            </td>
+                                            <?php } ?>
 
                                             <td>
+                                                <?php if ($l->status == 'selesai') { ?>
+                                                <button type="button" class="btn badge bg-info" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModalScrollable<?= $l->id_pengaduan ?>">
+                                                    Lihat Tanggapan Petugas
+                                                </button>
+
+                                                <?php } ?>
+
                                                 <?php if ($l->status == 'proses' && $this->db->get_where('tanggapan', ['id_pengaduan' => $l->p_id])->num_rows() >= 1) { ?>
                                                 <button type="button" class="btn badge bg-info" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModalScrollable<?= $l->id_pengaduan ?>">

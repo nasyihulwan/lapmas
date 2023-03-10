@@ -85,6 +85,7 @@
                                             </div>
                                         </div>
                                         <div class="col-12 d-flex justify-content-end">
+                                            <a href="#" id="tolak" class="setujui btn btn-danger me-1 mb-1">Tolak</a>
                                             <a href="#" id="setujui"
                                                 class="setujui btn btn-primary me-1 mb-1">Setujui</a>
                                         </div>

@@ -74,6 +74,8 @@
                                     <?php } else if ($this->uri->segment(2) == 'proses') { ?>
                                     <a href="<?= site_url() ?>pengaduan/proses/detail/<?= $r->id_pengaduan ?>"
                                         class="btn badge bg-info">Detail</a>
+                                    <?php } else if ($this->uri->segment(2) == 'ditolak') { ?>
+                                    <a href="#" class="btn badge bg-danger">Hapus</a>
                                     <?php } else { ?>
                                     <a href="<?= site_url() ?>pengaduan/selesai/detail/<?= $r->id_pengaduan ?>"
                                         class="btn badge bg-info">Detail</a>

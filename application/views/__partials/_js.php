@@ -20,6 +20,20 @@
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+<!-- Dropify -->
+<script src="<?= base_url() ?>assets/landing/js/dropify.js"></script>
+
+<script>
+$('.dropify').dropify({
+    messages: {
+        'default': 'Seret dan lepas foto di sini atau klik',
+        'replace': 'Seret dan lepas atau klik untuk mengganti',
+        'remove': 'Hapus',
+        'error': 'Ups, sesuatu yang salah terjadi.'
+    }
+});
+</script>
+
 
 <!-- Page Specific Script -->
 <script>
@@ -103,6 +117,37 @@ document.getElementById("setujui").addEventListener("click", async (e) => {
             }).then((result) => {
                 window.location =
                     `<?= site_url('pengaduan/vnv/update/') ?><?=$queryAduan['p_id']?>`;
+            });
+        }
+    })
+});
+
+document.getElementById("tolak").addEventListener("click", async (e) => {
+    const pernyataan = "Saya menolak pengaduan ini";
+    const {
+        value: konfirText
+    } = await Swal.fire({
+        title: "Konfirmasi",
+        input: "text",
+        inputLabel: 'Ketik "Saya menolak pengaduan ini" ',
+        inputPlaceholder: "Saya menolak pengaduan ini",
+        preConfirm: (value) => {
+            if (!value || value != pernyataan) {
+                Swal.showValidationMessage(
+                    'Mohon input pernyataan dengan benar!'
+                )
+            }
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Tolak',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                icon: "success",
+                title: "Laporan pengaduan berhasil ditolak!",
+            }).then((result) => {
+                window.location =
+                    `<?= site_url('pengaduan/vnv/tolak/') ?><?=$queryAduan['p_id']?>`;
             });
         }
     })

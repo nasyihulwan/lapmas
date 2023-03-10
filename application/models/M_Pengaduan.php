@@ -3,6 +3,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_Pengaduan extends CI_Model
 {
+    function queryTolakPengaduan()
+    {
+        return $this->db->get_where('pengaduan', ['status' => 'tolak'] )->result();
+    }
     function queryVerifikasiPengaduan()
     {
         return $this->db->get_where('pengaduan', ['status' => '0'] )->result();
