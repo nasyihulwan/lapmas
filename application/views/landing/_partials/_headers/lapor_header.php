@@ -6,7 +6,8 @@
                  <nav class="main-nav">
                      <!-- ***** Logo Start ***** -->
                      <a href="<?= site_url() ?>" class="logo">
-                         <img src="<?= base_url() ?>assets/landing/images/logo.png" alt="Softy Pinko" />
+                         <img src="<?= base_url() ?>assets/landing/images/no_outline_lapmas_logo.png"
+                             alt="lapmas-logo" />
                      </a>
                      <!-- ***** Logo End ***** -->
                      <!-- ***** Menu Start ***** -->

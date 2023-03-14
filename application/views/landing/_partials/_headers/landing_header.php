@@ -5,8 +5,9 @@
              <div class="col-12">
                  <nav class="main-nav">
                      <!-- ***** Logo Start ***** -->
-                     <a href="#" class="logo">
-                         <img src="<?= base_url() ?>assets/landing/images/logo.png" alt="Softy Pinko" />
+                     <a href="<?= site_url() ?>" class="logo fixed">
+                         <img src="<?= base_url() ?>assets/landing/images/no_outline_lapmas_logo.png" alt="Lapmas_logo"
+                             style="position: absolute;" />
                      </a>
                      <!-- ***** Logo End ***** -->
                      <!-- ***** Menu Start ***** -->
