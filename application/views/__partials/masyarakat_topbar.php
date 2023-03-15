@@ -5,8 +5,9 @@
                 <div class="header-top">
                     <div class="container">
                         <div class="logo">
-                            <a href="index.html"><img src="<?= base_url() ?>assets/images/logo/logo.svg"
-                                    alt="Logo" /></a>
+                            <a href="<?= site_url() ?>masyarakat"><img
+                                    src="<?= base_url() ?>assets/images/logo/no_outline_lapmas_logo.png" alt="Logo"
+                                    style="width: 80%; height: 40%;" srcset=""></a></a>
                         </div>
                         <div class="header-top-right">
                             <div class="dropdown">

@@ -84,12 +84,12 @@
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModalScrollable<?= $r->id_pengaduan ?>" tabindex="-1"
                                     role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalScrollableTitle">
-                                                    <?= $r->id_pengaduan ?> - <?= $r->judul_laporan ?> -
-                                                    <?= $r->nik ?>
+                                                    <?= $r->judul_laporan ?> -
+                                                    <?= $r->tgl_pengaduan ?>
                                                 </h5>
                                                 <button type="button" class="close" data-bs-dismiss="modal"
                                                     aria-label="Close">

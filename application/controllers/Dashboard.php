@@ -25,4 +25,22 @@ class Dashboard extends CI_Controller
         $this->load->view('__partials/_footer');
         $this->load->view('__partials/_js');
     }
+    public function umChartFilter()
+    {
+        $data['masyarakatCount'] = $this->M_Masyarakat->queryAllMasyarakat()->num_rows();
+        $data['title'] = 'Dashboard';
+
+        $this->form_validation->set_rules('tanggal_awal', 'Tanggal Awal', 'required');
+        $this->form_validation->set_rules('tanggal_akhir', 'Tanggal Akhir', 'required');
+        
+        if ($this->form_validation->run() == false) {
+            $this->load->view('__partials/_head');
+            $this->load->view('__partials/_sidebar');
+            $this->load->view('dashboard', $data);
+            $this->load->view('__partials/_footer');
+            $this->load->view('__partials/_js');
+        } else { 
+            echo "Chart dari "  . $this->input->post('tanggal_awal') . " Sampai " . $this->input->post('tanggal_akhir');
+        }
+    }
 }

@@ -43,12 +43,17 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+<?php $satu = 1; ?>
+<?php $dua = 2; ?>
+<?php $tiga = 3; ?>
+<?php $empat = 4; ?>
+<?php $lima = 5; ?>
 <script>
-var sangatPuas = document.getElementById('sangatPuas').value;
-var puas = document.getElementById('puas').value;
-var tidakPuas = document.getElementById('tidakPuas').value;
-var kurangPuas = document.getElementById('kurangPuas').value;
-var sangatTidakPuas = document.getElementById('sangatTidakPuas').value;
+// var sangatPuas = document.getElementById('sangatPuas').value;
+// var puas = document.getElementById('puas').value;
+// var tidakPuas = document.getElementById('tidakPuas').value;
+// var kurangPuas = document.getElementById('kurangPuas').value;
+// var sangatTidakPuas = document.getElementById('sangatTidakPuas').value;
 
 var optionsUlasan = {
     annotations: {
@@ -67,7 +72,7 @@ var optionsUlasan = {
     plotOptions: {},
     series: [{
         name: "Jumlah Ulasan",
-        data: [sangatPuas, puas, tidakPuas, kurangPuas, sangatTidakPuas]
+        data: [<?= $satu ?>, <?= $dua ?>, <?= $tiga ?>, <?= $empat ?>, <?= $lima ?>]
     }, ],
     colors: "#9694FF",
     xaxis: {
@@ -90,71 +95,172 @@ chartUlasan.render();
 </script>
 
 <script>
+// document.getElementById("setujui").addEventListener("click", async (e) => {
+//     const pernyataan = "Saya menyetujui laporan pengaduan ini";
+//     const {
+//         value: konfirText
+//     } = await Swal.fire({
+//         title: "Konfirmasi",
+//         input: "text",
+//         inputLabel: 'Ketik "Saya menyetujui laporan pengaduan ini" ',
+//         inputPlaceholder: "Saya menyetujui laporan pengaduan ini",
+//         preConfirm: (value) => {
+//             if (!value || value != pernyataan) {
+//                 Swal.showValidationMessage(
+//                     'Mohon input pernyataan dengan benar!'
+//                 )
+//             }
+//         },
+//         showCancelButton: true,
+//         confirmButtonText: 'Setujui',
+//     }).then((result) => {
+//         // var href = $(this).attr("data-href");
+//         if (result.isConfirmed) {
+//             Swal.fire({
+//                 icon: "success",
+//                 title: "Laporan pengaduan berhasil disetujui!",
+//             }).then((result) => {
+//                 window.location =
+//                     `<?= site_url('pengaduan/vnv/update/') ?><?=$queryAduan['p_id']?>`;
+//             });
+//         }
+//     })
+// });
+
 document.getElementById("setujui").addEventListener("click", async (e) => {
-    const pernyataan = "Saya menyetujui laporan pengaduan ini";
-    const {
-        value: konfirText
-    } = await Swal.fire({
-        title: "Konfirmasi",
-        input: "text",
-        inputLabel: 'Ketik "Saya menyetujui laporan pengaduan ini" ',
-        inputPlaceholder: "Saya menyetujui laporan pengaduan ini",
-        preConfirm: (value) => {
-            if (!value || value != pernyataan) {
-                Swal.showValidationMessage(
-                    'Mohon input pernyataan dengan benar!'
-                )
-            }
-        },
+    Swal.fire({
+        title: 'Konfirmasi',
         showCancelButton: true,
         confirmButtonText: 'Setujui',
     }).then((result) => {
-        // var href = $(this).attr("data-href");
+        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
+            let timerInterval
             Swal.fire({
-                icon: "success",
-                title: "Laporan pengaduan berhasil disetujui!",
+                title: 'Laporan pengaduan berhasil disetujui!',
+                icon: 'success',
+                html: 'Redirect otomatis dalam <b></b> milidetik.',
+                timer: 2000,
+                timerProgressBar: true,
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
             }).then((result) => {
-                window.location =
-                    `<?= site_url('pengaduan/vnv/update/') ?><?=$queryAduan['p_id']?>`;
-            });
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    window.location =
+                        `<?= site_url('pengaduan/vnv/update/') ?><?=$queryAduan['p_id']?>`;
+                }
+            })
         }
     })
+
 });
 
+// document.getElementById("tolak").addEventListener("click", async (e) => {
+//     const pernyataan = "Saya menolak pengaduan ini";
+//     const {
+//         value: konfirText
+//     } = await Swal.fire({
+//         title: "Konfirmasi",
+//         input: "text",
+//         inputLabel: 'Ketik "Saya menolak pengaduan ini" ',
+//         inputPlaceholder: "Saya menolak pengaduan ini",
+//         preConfirm: (value) => {
+//             if (!value || value != pernyataan) {
+//                 Swal.showValidationMessage(
+//                     'Mohon input pernyataan dengan benar!'
+//                 )
+//             }
+//         },
+//         showCancelButton: true,
+//         confirmButtonText: 'Tolak',
+//     }).then((result) => {
+//         if (result.isConfirmed) {
+//             Swal.fire({
+//                 icon: "success",
+//                 title: "Laporan pengaduan berhasil ditolak!",
+//             }).then((result) => {
+//                 window.location =
+//                     `<?= site_url('pengaduan/vnv/tolak/') ?><?=$queryAduan['p_id']?>`;
+//             });
+//         }
+//     })
+// });
+
 document.getElementById("tolak").addEventListener("click", async (e) => {
-    const pernyataan = "Saya menolak pengaduan ini";
-    const {
-        value: konfirText
-    } = await Swal.fire({
-        title: "Konfirmasi",
-        input: "text",
-        inputLabel: 'Ketik "Saya menolak pengaduan ini" ',
-        inputPlaceholder: "Saya menolak pengaduan ini",
-        preConfirm: (value) => {
-            if (!value || value != pernyataan) {
-                Swal.showValidationMessage(
-                    'Mohon input pernyataan dengan benar!'
-                )
-            }
-        },
+    Swal.fire({
+        title: 'Konfirmasi',
         showCancelButton: true,
         confirmButtonText: 'Tolak',
     }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
+            let timerInterval
             Swal.fire({
-                icon: "success",
-                title: "Laporan pengaduan berhasil ditolak!",
+                title: 'Laporan pengaduan berhasil ditolak!',
+                icon: 'success',
+                html: 'Redirect otomatis dalam <b></b> milidetik.',
+                timer: 2000,
+                timerProgressBar: true,
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
             }).then((result) => {
-                window.location =
-                    `<?= site_url('pengaduan/vnv/tolak/') ?><?=$queryAduan['p_id']?>`;
-            });
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    window.location =
+                        `<?= site_url('pengaduan/vnv/tolak/') ?><?=$queryAduan['p_id']?>`;
+                }
+            })
         }
     })
-
-
 });
 </script>
+
+<?php if ($this->session->flashdata('updateSelesai')): ?>
+<script>
+let timerInterval
+Swal.fire({
+    icon: 'success',
+    title: 'Laporan berhasil diselesaikan!',
+    html: 'Menutup otomatis dalam <b></b> milidetik.',
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+        }, 100)
+    },
+    willClose: () => {
+        clearInterval(timerInterval)
+    }
+}).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+    }
+})
+</script>
+<?php endif; ?>
 
 </body>
 

@@ -17,7 +17,7 @@
                     <a href="#" class="mini-box">
                         <i><img src="<?= base_url() ?>assets/landing/images/work-process-item-01.png" alt=""></i>
                         <strong>Tulis Laporan</strong>
-                        <span>Tulis apa yang ingin anda Laporkan dengan benar.</span>
+                        <span>Tulis apa yang ingin anda Laporkan dengan benar</span>
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 col-6">

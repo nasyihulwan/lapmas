@@ -35,5 +35,7 @@ class M_Lapor extends CI_Model
         $this->db->insert('pengaduan', $data);
         redirect('lapor');
     }
+
+    
     
 }

@@ -130,22 +130,29 @@
                                 <h4>Ulasan Masyarakat</h4>
                             </div>
                             <div class="card-body">
-                                <input type="hidden"
-                                    value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Sangat Puas'])->num_rows() ?>"
-                                    id="sangatPuas" class="sangatPuas">
-                                <input type="hidden"
-                                    value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Puas'])->num_rows() ?>"
-                                    id="puas" class="puas">
-                                <input type="hidden"
-                                    value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Kurang Puas'])->num_rows() ?>"
-                                    id="kurangPuas" class="kurangPuas">
-                                <input type="hidden"
-                                    value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Tidak Puas'])->num_rows() ?>"
-                                    id="tidakPuas" class="tidakPuas">
-                                <input type="hidden"
-                                    value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Sangat Tidak Puas'])->num_rows() ?>"
-                                    id="sangatTidakPuas" class="sangatTidakPuas">
-                                <div id="chart-ulasan"></div>
+                                <form action="<?= site_url() ?>dashboard/umChartFilter" method="post">
+                                    <input type="date" name="tanggal_awal">
+                                    <?= form_error('tanggal_awal', '<small class="text-danger pl-2">', '</small>') ?>
+                                    <input type="date" name="tanggal_akhir">
+                                    <?= form_error('tanggal_akhir', '<small class="text-danger pl-2">', '</small>') ?>
+                                    <input type="hidden"
+                                        value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Sangat Puas'])->num_rows() ?>"
+                                        id="sangatPuas" class="sangatPuas">
+                                    <input type="hidden"
+                                        value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Puas'])->num_rows() ?>"
+                                        id="puas" class="puas">
+                                    <input type="hidden"
+                                        value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Kurang Puas'])->num_rows() ?>"
+                                        id="kurangPuas" class="kurangPuas">
+                                    <input type="hidden"
+                                        value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Tidak Puas'])->num_rows() ?>"
+                                        id="tidakPuas" class="tidakPuas">
+                                    <input type="hidden"
+                                        value="<?= $this->db->get_where('ulasan_masyarakat', ['tingkat_kepuasan' => 'Sangat Tidak Puas'])->num_rows() ?>"
+                                        id="sangatTidakPuas" class="sangatTidakPuas">
+                                    <button type="submit">Cari</button>
+                                    <div id="chart-ulasan"></div>
+                                </form>
                             </div>
                         </div>
                     </div>

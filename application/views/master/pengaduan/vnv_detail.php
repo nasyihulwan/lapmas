@@ -51,13 +51,19 @@
                                         </div>
                                         <div class="col-md-12 col-12">
                                             <div class="form-group">
+                                                <label for="first-name-column">Judul Laporan</label>
+                                                <input type="text" name="tgl_pengaduan" class="form-control"
+                                                    value="<?= $queryAduan['judul_laporan'] ?>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
                                                 <div class="form-group mb-3">
                                                     <label for="exampleFormControlTextarea1" class="form-label">Isi
                                                         Laporan</label>
                                                     <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                        rows="9" disabled>
-                                                        <?php echo htmlspecialchars($queryAduan['isi_laporan']); ?>
-                                                    </textarea>
+                                                        rows="9"
+                                                        disabled><?php echo htmlspecialchars($queryAduan['isi_laporan']); ?></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -84,10 +90,13 @@
                                                     }  ?>" name="status_pengaduan" disabled>
                                             </div>
                                         </div>
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <a href="#" id="tolak" class="setujui btn btn-danger me-1 mb-1">Tolak</a>
+                                        <div class="col-6">
+                                            <a href="#" id="tolak"
+                                                class="setujui btn btn-block btn-danger me-1 mb-1">Tolak</a>
+                                        </div>
+                                        <div class="col-6">
                                             <a href="#" id="setujui"
-                                                class="setujui btn btn-primary me-1 mb-1">Setujui</a>
+                                                class="setujui btn btn-block btn-primary me-1 mb-1">Setujui</a>
                                         </div>
                                     </div>
                                 </form>
@@ -131,4 +140,6 @@
                 </div>
             </div>
         </div>
+
+        
     </div>

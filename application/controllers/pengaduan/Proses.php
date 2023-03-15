@@ -8,7 +8,7 @@ class Proses extends CI_Controller
         parent::__construct();
         $this->load->model('M_Tanggapan');
         $this->load->model('M_Pengaduan');
-        
+        $this->load->helper('form');
     }
 
     public function index()
@@ -32,13 +32,13 @@ class Proses extends CI_Controller
         $data['getDate'] = $this->M_Tanggapan->getDate($id_pengaduan);
         $data['title'] = 'Data Pengaduan - Proses Detail';
         $data['subtitle'] = 'Pastikan kebenaran laporan sebelum melakukan verifikasi';
-        
-        
+
         $this->load->view('__partials/_head');
         $this->load->view('__partials/_sidebar');
         $this->load->view('master/pengaduan/proses_detail', $data);
         $this->load->view('__partials/_footer');
         $this->load->view('__partials/_js');
+        
     }
 
     public function insertTanggapan($id_pengaduan)
@@ -53,7 +53,6 @@ class Proses extends CI_Controller
             'tgl_tanggapan' => date('Y-m-d'),
             'tanggapan' => $tanggapan,
             'id_petugas' => $id_petugas
-
         ];
         
         $this->db->insert('tanggapan', $data);
@@ -61,20 +60,8 @@ class Proses extends CI_Controller
         redirect('pengaduan/proses');
     }
 
-    public function updateSelesai($id_pengaduan )
+    public function updateSelesai()
     {
-        $data['queryAduan'] = $this->M_Pengaduan->queryDetailPengaduan($id_pengaduan);
-        $data['getDate'] = $this->M_Tanggapan->getDate($id_pengaduan);
-        $data['title'] = 'Data Pengaduan - Proses Detail';
-        $data['subtitle'] = 'Pastikan kebenaran laporan sebelum melakukan verifikasi';
-        if ($this->form_validation->run() == false) {
-            $this->load->view('__partials/_head');
-            $this->load->view('__partials/_sidebar');
-            $this->load->view('master/pengaduan/update_proses', $data);
-            $this->load->view('__partials/_footer');
-            $this->load->view('__partials/_js');
-        } else {
-            redirect('dashboard');
-        }
+        $this->M_Pengaduan->_selesai();
     }
 }

@@ -5,10 +5,11 @@
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="index.html"><img src="<?= base_url() ?>assets/images/logo/logo.svg" alt="Logo"
-                                    srcset=""></a>
+                            <a href="<?= site_url() ?>">
+                                <img src="<?= base_url() ?>assets/images/logo/no_outline_lapmas_logo.png" alt="Logo"
+                                    style="width: 90%; height: 50%;" srcset=""></a>
                         </div>
-                        <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
+                        <div class="theme-toggle d-flex gap-2  align-items-center mt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20"
                                 height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
@@ -60,9 +61,6 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="<?= site_url() ?>pengaduan/ditolak">Ditolak</a>
-                                </li>
-                                <li class="submenu-item ">
                                     <a href="<?= site_url() ?>pengaduan/vnv">Verifikasi & Validasi</a>
                                 </li>
                                 <li class="submenu-item ">
@@ -70,6 +68,9 @@
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="<?= site_url() ?>pengaduan/selesai">Selesai</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="<?= site_url() ?>pengaduan/ditolak">Ditolak</a>
                                 </li>
                             </ul>
                         </li>
