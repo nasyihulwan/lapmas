@@ -89,16 +89,13 @@
                                         </div>
                                         <div class="col-md-12 col-12">
                                             <div class="form-group">
-                                                <label class="form-label">Foto</label>
-                                                <div class="row gallery" data-bs-toggle="modal"
+                                                <label class="form-label">Lampiran</label>
+                                                <div class="form-group mb-3" data-bs-toggle="modal"
                                                     data-bs-target="#galleryModal">
-                                                    <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
-                                                        <a href="#">
-                                                            <img class="w-100 active"
-                                                                src="<?= base_url() ?>assets/images/laporan/<?= $queryAduan['foto'] ?>"
-                                                                data-bs-target="#Gallerycarousel" data-bs-slide-to="0">
-                                                        </a>
-                                                    </div>
+                                                    <button type="button" class="btn btn-block btn-outline-primary"
+                                                        data-bs-target="#Gallerycarousel" data-bs-slide-to="0">
+                                                        Lihat
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -110,17 +107,22 @@
                                                     name="status_pengaduan" disabled>
                                             </div>
                                         </div>
-                                        <?php if ($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() >= 1) { ?>
+
                                         <div class="col-md-12 col-12">
                                             <div class="form-group">
                                                 <div class="form-group mb-3">
                                                     <label for="exampleFormControlTextarea1"
                                                         class="form-label">Tanggapan Petugas</label>
+                                                    <?php if ($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() >= 1) { ?>
                                                     <button type="button" class="btn btn-block btn-outline-primary"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#tanggapanPetugas<?= $queryAduan['p_id'] ?>">
                                                         Lihat
                                                     </button>
+                                                    <?php } else { ?>
+                                                    <textarea name="tanggapan" class="form-control"
+                                                        id="exampleFormControlTextarea1" rows="9" required></textarea>
+                                                    <?php } ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -138,13 +140,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php } ?>
+
                                         <?php } ?>
 
 
                                         <div class="col-12 d-flex justify-content-end">
                                             <?php 
-                            
                                                 // add 3 days to date
                                             if ($this->db->get_where('tanggapan', ['id_pengaduan' => $queryAduan['id_pengaduan']])->num_rows() >= 1) {
                                                 $uploadDate = $getDate['tgl_tanggapan'];
@@ -188,25 +189,103 @@
         <!-- Modal -->
         <div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="galleryModalTitle"
             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="galleryModalTitle">
-                            <?= $queryAduan['id_pengaduan'] . ' - ' . $queryAduan['nik'] . ' - ' . $queryAduan['foto']?>
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">
+                            <?= $queryAduan['judul_laporan'] ?> -
+                            <?= $queryAduan['tgl_pengaduan'] ?>
                         </h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <i data-feather="x"></i>
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div class="alert alert-secondary" role="alert">
 
-                        <div id="Gallerycarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100"
-                                        src="<?= base_url() ?>assets/images/laporan/<?= $queryAduan['foto'] ?>">
-                                </div>
-                            </div>
+                            <?php 
+                            $ekstensi_1 = substr($queryAduan['lampiran_1'], -3); 
+                            if ($ekstensi_1 == 'mp4') { ?>
+                            Lampiran 1 - <b><?= $queryAduan['lampiran_1'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_1'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <br>
+                            <video width="730" height="570" controls>
+                                <source
+                                    src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_1'] ?>"
+                                    type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <?php } else if($ekstensi_1 == 'pdf') { ?>
+                            Lampiran 1 - <b><?= $queryAduan['lampiran_1'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_1'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <?php } else { ?>
+                            Lampiran 1 - <b><?= $queryAduan['lampiran_1'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_1'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <br>
+                            <img src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_1'] ?>"
+                                alt="<?= $queryAduan['lampiran_1'] ?>" width="320" height="240">
+                            <?php } ?>
+
+                            <?php if ($queryAduan['lampiran_2'] != null): ?>
+                            <hr>
+                            <?php 
+                            $ekstensi_2 = substr($queryAduan['lampiran_2'], -3); 
+                            if ($ekstensi_2 == 'mp4') { ?>
+                            Lampiran 2 - <b><?= $queryAduan['lampiran_2'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_2'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <br>
+                            <video width="730" height="570" controls>
+                                <source
+                                    src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_2'] ?>"
+                                    type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <?php } else if($ekstensi_2 == 'pdf') { ?>
+                            Lampiran 2 - <b><?= $queryAduan['lampiran_2'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_2'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <?php } else { ?>
+                            Lampiran 2 - <b><?= $queryAduan['lampiran_2'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_2'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <br>
+                            <img src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_2'] ?>"
+                                alt="<?= $queryAduan['lampiran_2'] ?>" width="320" height="240">
+                            <?php } ?>
+                            <?php endif; ?>
+
+                            <?php if ($queryAduan['lampiran_3'] != null): ?>
+                            <hr>
+                            <?php 
+                            $ekstensi_3 = substr($queryAduan['lampiran_3'], -3); 
+                            if ($ekstensi_3 == 'mp4') { ?>
+                            Lampiran 3 - <b><?= $queryAduan['lampiran_3'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_3'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <br>
+                            <video width="730" height="570" controls>
+                                <source
+                                    src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_3'] ?>"
+                                    type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <?php } else if($ekstensi_3 == 'pdf') { ?>
+                            Lampiran 3 - <b><?= $queryAduan['lampiran_3'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_3'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <?php } else { ?>
+                            Lampiran 3 - <b><?= $queryAduan['lampiran_3'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_3'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <br>
+                            <img src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_3'] ?>"
+                                alt="<?= $queryAduan['lampiran_3'] ?>" width="320" height="240">
+                            <?php } ?>
+                            <?php endif; ?>
                         </div>
                     </div>
 
@@ -259,7 +338,7 @@
                     <div class="modal-body">
                         <div class="alert alert-secondary" role="alert">
                             Ditanggapi pada
-                            <b><?= tgl_indo(date("Y-m-d", strtotime($queryAduan['tgl_tanggapan_balik']))) ?></b>
+                            <b><?= tgl_indo(date("Y-m-d", strtotime($queryAduan['tgl_tanggapan']))) ?></b>
                         </div>
                         <?= $queryAduan['tanggapan'] ?>
                     </div>
@@ -332,11 +411,29 @@
                             <input type="hidden" name="id_pengaduan" value="<?= $queryAduan['id_pengaduan'] ?>">
                             <div class="col-md-12 col-12">
                                 <div class="form-group">
-                                    <div class="form-group mb-3">
-                                        <label>Foto Bukti</label>
-                                        <!-- <input type="file" name="foto_bukti"> -->
-                                        <input type="file" class="dropify" name="foto_bukti"
-                                            data-allowed-file-extensions="jpg png jpeg" required>
+                                    <div class="alert alert-secondary" role="alert">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        <span>Ekstensi file yang didukung : <b>jpg, jpeg, png, pdf &
+                                                mp4</b>. Anda
+                                            dapat
+                                            mengupload bukti selesai hingga
+                                            maksimal <b>3 lampiran</b></span>
+                                    </div>
+                                    <label>Lampiran</label>
+                                    <!-- <input type="file" name="foto_bukti"> -->
+                                    <input type="file" class="dropify" id="lampiran_1" name="lampiran_1"
+                                        data-allowed-file-extensions="jpg jpeg png pdf mp4" required>
+                                    <br>
+                                    <div id="div_lam_2">
+                                        <label>Lampiran 2 (Opsional)</label>
+                                        <input type="file" class="dropify" id="lampiran_2" name="lampiran_2"
+                                            data-allowed-file-extensions="jpg jpeg png pdf mp4">
+                                        <br>
+                                    </div>
+                                    <div id="div_lam_3">
+                                        <label>Lampiran 3 (Opsional)</label>
+                                        <input type="file" class="dropify" id="lampiran_3" name="lampiran_3"
+                                            data-allowed-file-extensions="jpg jpeg png pdf mp4">
                                     </div>
                                 </div>
                             </div>
@@ -358,3 +455,71 @@
         </div>
 
     </div>
+
+    <!-- Page Specific Script -->
+    <script src="<?= base_url() ?>assets/extensions/jquery/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // *** DROPIFY *** ///
+        // Used events
+        var lampiran_1 = $('#lampiran_1').dropify();
+        var lampiran_2 = $('#lampiran_2').dropify();
+
+        lampiran_1.on('dropify.beforeClear', function(event, element) {
+            return confirm("Apakah Anda benar-benar ingin menghapus \"" + element.file
+                .name + "\" ?");
+        });
+        lampiran_2.on('dropify.beforeClear', function(event, element) {
+            return confirm("Apakah Anda benar-benar ingin menghapus \"" + element.file
+                .name + "\" ?");
+        });
+
+        lampiran_1.on('dropify.afterClear', function(event, element) {
+            $("#div_lam_2").hide();
+            $("#div_lam_3").hide();
+            Swal.fire(
+                'Dihapus!',
+                'File Anda telah dihapus.',
+                'success'
+            )
+        });
+        lampiran_2.on('dropify.afterClear', function(event, element) {
+            $("#div_lam_3").hide();
+            Swal.fire(
+                'Dihapus!',
+                'File Anda telah dihapus.',
+                'success'
+            )
+        });
+
+        lampiran_1.on('dropify.errors', function(event, element) {
+            console.log('Has Errors');
+        });
+        lampiran_2.on('dropify.errors', function(event, element) {
+            console.log('Has Errors');
+        });
+        // *** DROPIFY END *** ///
+
+        $("#div_lam_2").hide();
+        $("#div_lam_3").hide();
+
+        $('#lampiran_1').on("change", function() {
+            if (document.getElementById("lampiran_1").files.length == 0) {
+                $("#div_lam_2").hide();
+                $("#div_lam_3").hide();
+            } else if (document.getElementById("lampiran_1").files.length == 1) {
+                $("#div_lam_2").show();
+            }
+        });
+
+        $('#lampiran_2').on("change", function() {
+            if (document.getElementById("lampiran_1").files.length == 0) {
+                $("#div_lam_3").hide();
+            } else if (document.getElementById("lampiran_1").files.length == 1) {
+                $("#div_lam_3").show();
+            }
+        });
+
+
+    });
+    </script>

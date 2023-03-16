@@ -45,7 +45,7 @@
                                             } else { 
                                                 echo $u->nik; 
                                                 }  ?></h3>
-                                    <span><?= $u->tingkat_kepuasan ?></span>
+                                    <span style="color: black;"><?= $u->tingkat_kepuasan ?></span>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
 
 <?php $this->load->view('__partials/_js.php'); ?>
 <!-- Swiper JS -->
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9.1.0/swiper-bundle.min.js"></script>
 <!-- Initialize Swiper -->
 <script>
 var swiper = new Swiper(".mySwiper", {

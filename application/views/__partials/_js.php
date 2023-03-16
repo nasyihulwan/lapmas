@@ -10,7 +10,6 @@
 
 <script src="<?= base_url() ?>assets/js/pages/horizontal-layout.js"></script>
 
-
 <script src="<?= base_url() ?>assets/extensions/choices.js/public/assets/scripts/choices.js"></script>
 <script src="<?= base_url() ?>assets/js/pages/form-element-select.js"></script>
 
@@ -26,7 +25,7 @@
 <script>
 $('.dropify').dropify({
     messages: {
-        'default': 'Seret dan lepas foto di sini atau klik',
+        'default': 'Seret dan lepas lampiran di sini atau klik',
         'replace': 'Seret dan lepas atau klik untuk mengganti',
         'remove': 'Hapus',
         'error': 'Ups, sesuatu yang salah terjadi.'

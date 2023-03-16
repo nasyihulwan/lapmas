@@ -31,10 +31,22 @@
                                                     placeholder="Ketik Isi Laporan Anda" required=""></textarea>
                                             </fieldset>
                                         </div>
-                                        <div class="col-lg-12 mb-4">
+                                        <div class="col-lg-12 mb-4 justify-content-end">
                                             <fieldset>
-                                                <input type="file" class="dropify" name="foto_laporan"
-                                                    data-allowed-file-extensions="jpg png jpeg">
+                                                <input type="file" class="dropify" id="lampiran_1" name="lampiran_1"
+                                                    data-allowed-file-extensions="jpg jpeg png pdf mp4" required>
+                                                <br>
+                                                <div id="div_lam_2">
+                                                    <label class="float-left">Lampiran 2 (Opsional)</label>
+                                                    <input type="file" class="dropify" id="lampiran_2" name="lampiran_2"
+                                                        data-allowed-file-extensions="jpg jpeg png pdf mp4">
+                                                    <br>
+                                                </div>
+                                                <div id="div_lam_3">
+                                                    <label class="float-left">Lampiran 3 (Opsional)</label>
+                                                    <input type="file" class="dropify" id="lampiran_3" name="lampiran_3"
+                                                        data-allowed-file-extensions="jpg jpeg png pdf mp4">
+                                                </div>
                                             </fieldset>
                                         </div>
                                         <div class="col-lg-12">

@@ -55,31 +55,71 @@ class M_Pengaduan extends CI_Model
         $id_pengaduan = $this->input->post('id_pengaduan');
 
          // Check image yang akan di upload
-         $upload_image = $_FILES['foto_bukti']['name'];
+         $lampiran_1 = $_FILES['lampiran_1']['name'];
+         $lampiran_2 = $_FILES['lampiran_2']['name'];
+         $lampiran_3 = $_FILES['lampiran_3']['name'];
 
-         if ($upload_image) {
-            $config['allowed_types'] = 'jpg|png|jpeg';
+         if ($lampiran_1) {
+            $config['allowed_types'] = 'jpg|jpeg|png|pdf|mp4';
             $config['max_size'] = '10240';
-            $config['upload_path'] = './assets/images/laporan/';
+            $config['upload_path'] = './assets/images/laporan/pengaduan/pengaduan_selesai/';
 
             $this->load->library('upload', $config);
 
-            if ($this->upload->do_upload('foto_bukti')) {
-                $foto_bukti = $this->upload->data('file_name');
+            if ($this->upload->do_upload('lampiran_1')) {
+                $lampiran_1 = $this->upload->data('file_name');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
                 redirect('lapor');
             }
         }
 
+        if ($lampiran_2) {
+            $config['allowed_types'] = 'jpg|jpeg|png|pdf|mp4';
+            $config['max_size'] = '10240';
+            $config['upload_path'] = './assets/images/laporan/pengaduan/pengaduan_selesai/';
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('lampiran_2')) {
+                $lampiran_2 = $this->upload->data('file_name');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                redirect('lapor');
+            }
+        }
+
+        if ($lampiran_3) {
+            $config['allowed_types'] = 'jpg|jpeg|png|pdf|mp4';
+            $config['max_size'] = '10240';
+            $config['upload_path'] = './assets/images/laporan/pengaduan/pengaduan_selesai/';
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('lampiran_3')) {
+                $lampiran_3 = $this->upload->data('file_name');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                redirect('lapor');
+            }
+        }
+
+
         $data = [
             'id_selesai' => rand(10000, 99999),
             'id_pengaduan' => $id_pengaduan,
             'tgl_selesai' => date('Y-m-d'),
-            'foto' => $foto_bukti
+            'lampiran_1' => $lampiran_1,
+            'lampiran_2' => $lampiran_2,
+            'lampiran_3' => $lampiran_3
         ];
 
         $this->db->insert('pengaduan_selesai', $data);
+
+        $this->db->set('status', 'selesai');
+        $this->db->where('id_pengaduan', $id_pengaduan);
+        $this->db->update('pengaduan');
+
         $this->session->set_flashdata('updateSelesai', 'Action Completed');
         redirect('pengaduan/proses');
     }

@@ -21,7 +21,8 @@ class Landing extends CI_Controller
         $this->load->view('landing/_partials/2_preloader');
         $this->load->view('landing/_partials/_headers/landing_header');
         $this->load->view('landing/_partials/_welcomes/landing_welcome');
-        $this->load->view('landing/_partials/5_small_features');
+        // $this->load->view('landing/_partials/5_small_features');
+        $this->load->view('landing/_partials/6_big_features');
         $this->load->view('landing/_partials/8_testimonials', $data);
         $this->load->view('landing/_partials/10_counter_parallax');
         $this->load->view('landing/_partials/12_contact_us');
