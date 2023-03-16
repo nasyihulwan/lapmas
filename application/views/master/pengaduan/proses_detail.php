@@ -20,6 +20,12 @@
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-12">
+                    <div class="alert alert-dark" role="alert">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        <span>Anda dapat menyelesaikan pengaduan setelah 3 hari Anda menanggapi pengaduan atau setelah
+                            Masyarakat
+                            melakukan tanggapan balik.</span>
+                    </div>
                     <div class="card">
                         <?= $this->session->flashdata('message') ?>
                         <div class="card-content">
@@ -62,9 +68,17 @@
                                         <div class="col-md-12 col-12">
                                             <div class="form-group">
                                                 <label for="first-name-column">Tanggal Pengaduan</label>
-                                                <input type="text" name="tgl_pengaduan" class="form-control"
-                                                    value="<?= tgl_indo(date("Y-m-d", strtotime($queryAduan['tgl_pengaduan']))) ?>"
-                                                    disabled>
+                                                <input type="text" name="tgl_pengaduan" class="form-control" value="<?php 
+                                                    $tanggal = date("Y-m-d", strtotime($queryAduan['tgl_pengaduan']));  
+                                                    echo tgl_indo($tanggal, true) ?>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">Tanggal Kejadian</label>
+                                                <input type="text" name="tgl_pengaduan" class="form-control" value="<?php 
+                                                    $tanggal = date("Y-m-d", strtotime($queryAduan['tgl_kejadian']));  
+                                                    echo tgl_indo($tanggal, true) ?>" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-12">
@@ -72,6 +86,20 @@
                                                 <label for="first-name-column">Judul Laporan</label>
                                                 <input type="text" name="tgl_pengaduan" class="form-control"
                                                     value="<?= $queryAduan['judul_laporan'] ?>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">Tempat Kejadian</label>
+                                                <input type="text" name="tgl_pengaduan" class="form-control"
+                                                    value="<?= $queryAduan['tempat_kejadian'] ?>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">Kategori</label>
+                                                <input type="text" name="tgl_pengaduan" class="form-control"
+                                                    value="<?= $queryAduan['nama_kategori'] ?>" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-12">
@@ -92,21 +120,20 @@
                                                 <label class="form-label">Lampiran</label>
                                                 <div class="form-group mb-3" data-bs-toggle="modal"
                                                     data-bs-target="#galleryModal">
-                                                    <button type="button" class="btn btn-block btn-outline-primary"
-                                                        data-bs-target="#Gallerycarousel" data-bs-slide-to="0">
+                                                    <button type="button" class="btn btn-block btn-outline-primary">
                                                         Lihat
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 col-12">
+                                        <!-- <div class="col-md-12 col-12">
                                             <div class="form-group">
                                                 <label for="first-name-column">Status</label>
                                                 <input type="text" id="first-name-column" class="form-control"
                                                     value="<?= ucfirst($queryAduan['status']) ?>"
                                                     name="status_pengaduan" disabled>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="col-md-12 col-12">
                                             <div class="form-group">
@@ -519,7 +546,6 @@
                 $("#div_lam_3").show();
             }
         });
-
 
     });
     </script>

@@ -56,7 +56,7 @@ class Proses extends CI_Controller
         ];
         
         $this->db->insert('tanggapan', $data);
-        $this->session->set_flashdata('message', '<div class="alert alert-success">Tanggapan berhasil dikirim</div>');
+        $this->session->set_flashdata('insertTanggapan', 'Action Completed');
         redirect('pengaduan/proses');
     }
 

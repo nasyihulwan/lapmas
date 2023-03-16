@@ -42,6 +42,10 @@
 
     <link rel="stylesheet" href="<?= base_url() ?>assets/extensions/sweetalert2/sweetalert2.min.css" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <link rel="stylesheet" href="<?= base_url() ?>assets/extensions/choices.js/public/assets/styles/choices.css" />
+
 
 </head>
 

@@ -17,12 +17,14 @@ class Lapor extends CI_Controller
     {
         $this->form_validation->set_rules('judul_laporan', 'Judul', 'required');
 
+        $data['pengaduanKategori'] = $this->M_Lapor->getPengaduanKategori();
+
         if ($this->form_validation->run() == false) {
             $this->load->view('landing/_partials/1_head');
             $this->load->view('landing/_partials/2_preloader');
             $this->load->view('landing/_partials/_headers/lapor_header');
             $this->load->view('landing/_partials/_welcomes/lapor_welcome');
-            $this->load->view('landing/_partials/_input');
+            $this->load->view('landing/_partials/_input', $data);
             $this->load->view('landing/_partials/7_home_parallax');
             $this->load->view('landing/_partials/12_contact_us');
             $this->load->view('landing/_partials/footer');

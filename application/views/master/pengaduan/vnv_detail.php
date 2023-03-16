@@ -45,8 +45,17 @@
                                         <div class="col-md-12 col-12">
                                             <div class="form-group">
                                                 <label for="first-name-column">Tanggal Pengaduan</label>
-                                                <input type="text" name="tgl_pengaduan" class="form-control"
-                                                    value="<?= $queryAduan['tgl_pengaduan'] ?>" disabled>
+                                                <input type="text" name="tgl_pengaduan" class="form-control" value="<?php 
+                                                    $tanggal = date("Y-m-d", strtotime($queryAduan['tgl_pengaduan']));  
+                                                    echo tgl_indo($tanggal, true) ?>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">Tanggal Kejadian</label>
+                                                <input type="text" name="tgl_pengaduan" class="form-control" value="<?php 
+                                                    $tanggal = date("Y-m-d", strtotime($queryAduan['tgl_kejadian']));  
+                                                    echo tgl_indo($tanggal, true) ?>" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-12">
@@ -58,38 +67,44 @@
                                         </div>
                                         <div class="col-md-12 col-12">
                                             <div class="form-group">
+                                                <label for="first-name-column">Tempat Kejadian</label>
+                                                <input type="text" name="tgl_pengaduan" class="form-control"
+                                                    value="<?= $queryAduan['tempat_kejadian'] ?>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">Kategori</label>
+                                                <input type="text" id="first-name-column" class="form-control"
+                                                    value="<?= $queryAduan['nama_kategori'] ?>" name="status_pengaduan"
+                                                    disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
                                                 <div class="form-group mb-3">
                                                     <label for="exampleFormControlTextarea1" class="form-label">Isi
                                                         Laporan</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                        rows="9"
-                                                        disabled><?php echo htmlspecialchars($queryAduan['isi_laporan']); ?></textarea>
+                                                    <button type="button" class="btn btn-block btn-outline-primary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModalScrollable<?= $queryAduan['p_id'] ?>">
+                                                        Lihat
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-12">
                                             <div class="form-group">
-                                                <label class="form-label">Foto</label>
-                                                <div class="row gallery" data-bs-toggle="modal"
+                                                <label class="form-label">Lampiran</label>
+                                                <div class="form-group mb-3" data-bs-toggle="modal"
                                                     data-bs-target="#galleryModal">
-                                                    <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
-                                                        <a href="#">
-                                                            <img class="w-100 active"
-                                                                src="<?= base_url() ?>assets/images/laporan/<?= $queryAduan['foto'] ?>"
-                                                                data-bs-target="#Gallerycarousel" data-bs-slide-to="0">
-                                                        </a>
-                                                    </div>
+                                                    <button type="button" class="btn btn-block btn-outline-primary">
+                                                        Lihat
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-column">Status</label>
-                                                <input type="text" id="first-name-column" class="form-control" value="<?php if ($queryAduan['status'] == 0) {
-                                                        echo '0 - Pending';
-                                                    }  ?>" name="status_pengaduan" disabled>
-                                            </div>
-                                        </div>
+
                                         <div class="col-6">
                                             <a href="#" id="tolak"
                                                 class="setujui btn btn-block btn-danger me-1 mb-1">Tolak</a>
@@ -111,26 +126,131 @@
         </button> -->
 
         <!-- Modal -->
-        <div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="galleryModalTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal fade" id="exampleModalScrollable<?= $queryAduan['p_id'] ?>" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="galleryModalTitle">
-                            <?= $queryAduan['p_id'] . ' - ' . $queryAduan['nik'] . ' - ' . $queryAduan['foto']?>
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">
+                            <?= $queryAduan['judul_laporan'] ?> -
+                            <?= $queryAduan['tgl_pengaduan'] ?>
                         </h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <i data-feather="x"></i>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div id="Gallerycarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100"
-                                        src="<?= base_url() ?>assets/images/laporan/<?= $queryAduan['foto'] ?>">
-                                </div>
-                            </div>
+                        <?= $queryAduan['isi_laporan'] ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Close</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="galleryModalTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">
+                            <?= $queryAduan['judul_laporan'] ?> -
+                            <?= $queryAduan['tgl_pengaduan'] ?>
+                        </h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-secondary" role="alert">
+
+                            <?php 
+                            $ekstensi_1 = substr($queryAduan['lampiran_1'], -3); 
+                            if ($ekstensi_1 == 'mp4') { ?>
+                            Lampiran 1 - <b><?= $queryAduan['lampiran_1'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_1'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <br>
+                            <video width="730" height="570" controls>
+                                <source
+                                    src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_1'] ?>"
+                                    type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <?php } else if($ekstensi_1 == 'pdf') { ?>
+                            Lampiran 1 - <b><?= $queryAduan['lampiran_1'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_1'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <?php } else { ?>
+                            Lampiran 1 - <b><?= $queryAduan['lampiran_1'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_1'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <br>
+                            <img src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_1'] ?>"
+                                alt="<?= $queryAduan['lampiran_1'] ?>" width="320" height="240">
+                            <?php } ?>
+
+                            <?php if ($queryAduan['lampiran_2'] != null): ?>
+                            <hr>
+                            <?php 
+                            $ekstensi_2 = substr($queryAduan['lampiran_2'], -3); 
+                            if ($ekstensi_2 == 'mp4') { ?>
+                            Lampiran 2 - <b><?= $queryAduan['lampiran_2'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_2'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <br>
+                            <video width="730" height="570" controls>
+                                <source
+                                    src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_2'] ?>"
+                                    type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <?php } else if($ekstensi_2 == 'pdf') { ?>
+                            Lampiran 2 - <b><?= $queryAduan['lampiran_2'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_2'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <?php } else { ?>
+                            Lampiran 2 - <b><?= $queryAduan['lampiran_2'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_2'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <br>
+                            <img src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_2'] ?>"
+                                alt="<?= $queryAduan['lampiran_2'] ?>" width="320" height="240">
+                            <?php } ?>
+                            <?php endif; ?>
+
+                            <?php if ($queryAduan['lampiran_3'] != null): ?>
+                            <hr>
+                            <?php 
+                            $ekstensi_3 = substr($queryAduan['lampiran_3'], -3); 
+                            if ($ekstensi_3 == 'mp4') { ?>
+                            Lampiran 3 - <b><?= $queryAduan['lampiran_3'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_3'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <br>
+                            <video width="730" height="570" controls>
+                                <source
+                                    src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_3'] ?>"
+                                    type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <?php } else if($ekstensi_3 == 'pdf') { ?>
+                            Lampiran 3 - <b><?= $queryAduan['lampiran_3'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_3'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <?php } else { ?>
+                            Lampiran 3 - <b><?= $queryAduan['lampiran_3'] ?></b> - <a
+                                href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_3'] ?>"
+                                type="button" class="btn badge btn-primary mb-2" download>Download</a>
+                            <br>
+                            <img src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $queryAduan['nik'] ?>/<?= $queryAduan['lampiran_3'] ?>"
+                                alt="<?= $queryAduan['lampiran_3'] ?>" width="320" height="240">
+                            <?php } ?>
+                            <?php endif; ?>
                         </div>
                     </div>
 
@@ -141,5 +261,5 @@
             </div>
         </div>
 
-        
+
     </div>

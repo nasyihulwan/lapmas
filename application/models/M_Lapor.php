@@ -70,12 +70,15 @@ class M_Lapor extends CI_Model
         $data = [
             'id_pengaduan' => rand(0, 99999),
             'tgl_pengaduan' => date('Y-m-d'),
+            'tgl_kejadian' => $this->input->post('tgl_kejadian'),
             'nik' => $nik,
             'judul_laporan' => $this->input->post('judul_laporan'),
             'isi_laporan' => $this->input->post('isi_laporan'),
+            'tempat_kejadian' => $this->input->post('tempat_kejadian'),
             'lampiran_1' => $lampiran_1,
             'lampiran_2' => $lampiran_2,
             'lampiran_3' => $lampiran_3,
+            'kategori' => $this->input->post('kategori_laporan'),
             'status' => '0'
         ];
 
@@ -84,6 +87,9 @@ class M_Lapor extends CI_Model
         redirect('lapor');
     }
 
-    
-    
+    function getPengaduanKategori()
+    {
+        $this->db->query('SELECT * FROM pengaduan_kategori ORDER BY nama_kategori ASC');
+        return $this->db->get('pengaduan_kategori')->result();
+    }
 }

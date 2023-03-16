@@ -88,3 +88,12 @@ Swal.fire({
 })
 </script>
 <?php endif; ?>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    flatpickr(document.getElementById('tgl_kejadian'), {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+    });
+});
+</script>

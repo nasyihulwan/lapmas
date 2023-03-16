@@ -5,21 +5,38 @@ class M_Pengaduan extends CI_Model
 {
     function queryTolakPengaduan()
     {
-        return $this->db->get_where('pengaduan', ['status' => 'tolak'] )->result();
+        $this->db->select('*');
+        $this->db->from('pengaduan');
+        $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
+        $this->db->where('status', 'tolak');
+        return $this->db->get()->result();
     }
     function queryVerifikasiPengaduan()
     {
-        return $this->db->get_where('pengaduan', ['status' => '0'] )->result();
+        $this->db->select('*');
+        $this->db->from('pengaduan');
+        $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
+        $this->db->where('status', '0');
+        return $this->db->get()->result();
     }
 
     function queryValidasiPengaduan()
     {
-        return $this->db->get_where('pengaduan', ['status' => 'proses'] )->result();
+        $this->db->select('*');
+        $this->db->from('pengaduan');
+        $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
+        $this->db->where('status', 'proses');
+        return $this->db->get()->result();
     }
 
     function queryPengaduanSelesai()
     {
-        return $this->db->get_where('pengaduan', ['status' => 'selesai'] )->result();
+        $this->db->select('*');
+        $this->db->from('pengaduan');
+        $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
+        $this->db->where('status', 'selesai');
+        return $this->db->get()->result();
+
     }
 
     function queryDetailPengaduan($id_pengaduan)
@@ -27,9 +44,10 @@ class M_Pengaduan extends CI_Model
         // return $this->db->get_where('pengaduan', ['id_pengaduan' => $id_pengaduan])->row_array();
 
         $this->db->where('pengaduan.id_pengaduan', $id_pengaduan);
-        $this->db->select('pengaduan.*, pengaduan.id_pengaduan as p_id, tanggapan.*, tanggapan.id_pengaduan as t_id');
+        $this->db->select('pengaduan.*, pengaduan.id_pengaduan as p_id, tanggapan.*, tanggapan.id_pengaduan as t_id,pengaduan_kategori.*');
         $this->db->from('pengaduan');
         $this->db->join('tanggapan', 'pengaduan.id_pengaduan = tanggapan.id_pengaduan', 'LEFT');
+        $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
         return $this->db->get()->row_array();
     }
 
@@ -43,9 +61,10 @@ class M_Pengaduan extends CI_Model
     function queryPengaduanCurrentSession()
     {
         // return $this->db->get_where('pengaduan', ['nik' => $this->session->userdata('nik')])->result();
-        $this->db->select('pengaduan.*, pengaduan.id_pengaduan as p_id, tanggapan.*, tanggapan.id_pengaduan as t_id');
+        $this->db->select('pengaduan.*, pengaduan.id_pengaduan as p_id, tanggapan.*, tanggapan.id_pengaduan as t_id,pengaduan_kategori.*');
         $this->db->from('pengaduan');
         $this->db->join('tanggapan', 'pengaduan.id_pengaduan = tanggapan.id_pengaduan', 'LEFT');
+        $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
         $this->db->where('nik', $this->session->userdata('nik'));
         return $this->db->get()->result();
     }
@@ -62,7 +81,7 @@ class M_Pengaduan extends CI_Model
          if ($lampiran_1) {
             $config['allowed_types'] = 'jpg|jpeg|png|pdf|mp4';
             $config['max_size'] = '10240';
-            $config['upload_path'] = './assets/images/laporan/pengaduan/pengaduan_selesai/';
+            $config['upload_path'] = './assets/images/laporan/selesai/';
 
             $this->load->library('upload', $config);
 
@@ -77,7 +96,7 @@ class M_Pengaduan extends CI_Model
         if ($lampiran_2) {
             $config['allowed_types'] = 'jpg|jpeg|png|pdf|mp4';
             $config['max_size'] = '10240';
-            $config['upload_path'] = './assets/images/laporan/pengaduan/pengaduan_selesai/';
+            $config['upload_path'] = './assets/images/laporan/selesai/';
 
             $this->load->library('upload', $config);
 
@@ -92,7 +111,7 @@ class M_Pengaduan extends CI_Model
         if ($lampiran_3) {
             $config['allowed_types'] = 'jpg|jpeg|png|pdf|mp4';
             $config['max_size'] = '10240';
-            $config['upload_path'] = './assets/images/laporan/pengaduan/pengaduan_selesai/';
+            $config['upload_path'] = './assets/images/laporan/selesai/';
 
             $this->load->library('upload', $config);
 
@@ -103,7 +122,6 @@ class M_Pengaduan extends CI_Model
                 redirect('lapor');
             }
         }
-
 
         $data = [
             'id_selesai' => rand(10000, 99999),

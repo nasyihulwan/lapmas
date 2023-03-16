@@ -21,14 +21,28 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <fieldset>
                                                 <input name="judul_laporan" type="text" class="form-control" id="name"
-                                                    placeholder="Ketik Judul Laporan Anda" required="">
+                                                    placeholder="Ketik Judul Laporan Anda (Wajib)" required="">
                                                 <?= form_error('judul_laporan', '<small class="text-danger pl-2">', '</small>') ?>
                                             </fieldset>
                                         </div>
                                         <div class="col-lg-12">
                                             <fieldset>
                                                 <textarea name="isi_laporan" rows="12" class="form-control" id="message"
-                                                    placeholder="Ketik Isi Laporan Anda" required=""></textarea>
+                                                    placeholder="Ketik Isi Laporan Anda (Wajib)" required=""></textarea>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <fieldset>
+                                                <input type="text" class="form-control" name="tgl_kejadian"
+                                                    id="tgl_kejadian" placeholder="Tanggal & Waktu Kejadian (Wajib)"
+                                                    required>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <fieldset>
+                                                <input type="text" class="form-control" name="tempat_kejadian"
+                                                    placeholder="Lokasi Kejadian. Contoh: Bojong Awi Kaler (Wajib)"
+                                                    required>
                                             </fieldset>
                                         </div>
                                         <div class="col-lg-12 mb-4 justify-content-end">
@@ -46,6 +60,22 @@
                                                     <label class="float-left">Lampiran 3 (Opsional)</label>
                                                     <input type="file" class="dropify" id="lampiran_3" name="lampiran_3"
                                                         data-allowed-file-extensions="jpg jpeg png pdf mp4">
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <fieldset>
+                                                <div class="form-group">
+                                                    <select class="choices form-select" name="kategori_laporan">
+                                                        <option value="0" selected>Kategori Laporan (Opsional, biarkan
+                                                            default
+                                                            jika
+                                                            anda tidak yakin)</option>
+                                                        <?php foreach ($pengaduanKategori as $r) { ?>
+                                                        <option value="<?= $r->id ?>">
+                                                            <?= $r->nama_kategori ?></option>
+                                                        <?php } ?>
+                                                    </select>
                                                 </div>
                                             </fieldset>
                                         </div>

@@ -17,10 +17,13 @@
 <script script src="<?= base_url() ?>assets/extensions/apexcharts/apexcharts.min.js"></script>
 <script src="<?= base_url() ?>assets/js/pages/dashboard.js"></script>
 
+<!-- flatpickr -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <!-- Dropify -->
 <script src="<?= base_url() ?>assets/landing/js/dropify.js"></script>
+
+
 
 <script>
 $('.dropify').dropify({
@@ -239,6 +242,34 @@ let timerInterval
 Swal.fire({
     icon: 'success',
     title: 'Laporan berhasil diselesaikan!',
+    html: 'Menutup otomatis dalam <b></b> milidetik.',
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+        }, 100)
+    },
+    willClose: () => {
+        clearInterval(timerInterval)
+    }
+}).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+    }
+})
+</script>
+<?php endif; ?>
+
+<?php if ($this->session->flashdata('insertTanggapan')): ?>
+<script>
+let timerInterval
+Swal.fire({
+    icon: 'success',
+    title: 'Laporan berhasil ditanggapi!',
     html: 'Menutup otomatis dalam <b></b> milidetik.',
     timer: 2000,
     timerProgressBar: true,

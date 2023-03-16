@@ -27,127 +27,220 @@
             <?= $this->session->flashdata('message') ?>
             <div class="card">
                 <div class="card-body">
-                    <table class="table" id="table1">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>ID Pengaduan</th>
-                                <th>Tanggal Pengaduan</th>
-                                <?php if ($this->uri->segment(2) == 'selesai') { ?>
-                                <th>Tanggal Selesai</th>
-                                <?php } ?>
-                                <th>NIK</th>
-                                <th>Judul Laporan</th>
-                                <th>Isi Laporan</th>
-                                <th>Foto</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php 
-                                $no = 1; foreach ($queryAduan as $r) { ?>
-                            <tr>
-                                <td><?= $no++ ?></td>
-                                <td><?= $r->id_pengaduan ?></td>
-                                <td><?= $r->tgl_pengaduan ?></td>
-                                <?php if ($this->uri->segment(2) == 'selesai') { ?>
-                                <td><?= $r->tgl_selesai ?></td>
-                                <?php } ?>
-                                <td><?= $r->nik ?></td>
-                                <td><?= $r->judul_laporan ?></td>
-                                <td>
-                                    <button type="button" class="btn badge bg-warning" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModalScrollable<?= $r->id_pengaduan ?>">
-                                        Lihat
-                                    </button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn badge bg-warning" data-bs-toggle="modal"
-                                        data-bs-target="#galleryModal<?= $r->id_pengaduan ?>">
-                                        Lihat
-                                    </button>
-                                </td>
-                                <td>
-                                    <?php if ($this->uri->segment(2) == 'vnv') { ?>
-                                    <a href="<?= site_url() ?>pengaduan/vnv/detail/<?= $r->id_pengaduan ?>"
-                                        class="btn badge bg-info">Detail</a>
-                                    <?php } else if ($this->uri->segment(2) == 'proses') { ?>
-                                    <a href="<?= site_url() ?>pengaduan/proses/detail/<?= $r->id_pengaduan ?>"
-                                        class="btn badge bg-info">Detail</a>
-                                    <?php } else if ($this->uri->segment(2) == 'ditolak') { ?>
-                                    <a href="#" class="btn badge bg-danger">Hapus</a>
-                                    <?php } else { ?>
-                                    <a href="<?= site_url() ?>pengaduan/selesai/detail/<?= $r->id_pengaduan ?>"
-                                        class="btn badge bg-info">Detail</a>
+                    <div class="table-responsive">
+                        <table class="table" id="table1">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>ID Pengaduan</th>
+                                    <th>Tanggal Pengaduan</th>
+                                    <th>Tanggal Kejadian</th>
+                                    <?php if ($this->uri->segment(2) == 'selesai') { ?>
+                                    <th>Tanggal Selesai</th>
                                     <?php } ?>
-                                </td>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModalScrollable<?= $r->id_pengaduan ?>" tabindex="-1"
-                                    role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalScrollableTitle">
-                                                    <?= $r->judul_laporan ?> -
-                                                    <?= $r->tgl_pengaduan ?>
-                                                </h5>
-                                                <button type="button" class="close" data-bs-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <i data-feather="x"></i>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <?= $r->isi_laporan ?>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-light-secondary"
-                                                    data-bs-dismiss="modal">
-                                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                                    <span class="d-none d-sm-block">Close</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="modal fade" id="galleryModal<?= $r->id_pengaduan ?>" tabindex="-1"
-                                    role="dialog" aria-labelledby="galleryModalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-centered"
-                                        role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="galleryModalTitle">
-                                                    <?= $r->id_pengaduan . ' - ' . $r->judul_laporan . ' - ' . $r->foto?>
-                                                </h5>
-                                                <button type="button" class="close" data-bs-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <i data-feather="x"></i>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div id="Gallerycarousel" class="carousel slide carousel-fade"
-                                                    data-bs-ride="carousel">
-                                                    <div class="carousel-inner">
-                                                        <div class="carousel-item active">
-                                                            <img class="d-block w-100"
-                                                                src="<?= base_url() ?>assets/images/laporan/<?= $r->foto ?>">
-                                                        </div>
-                                                    </div>
+                                    <th>NIK</th>
+                                    <th>Judul Laporan</th>
+                                    <th>Kategori</th>
+                                    <th>Isi Laporan</th>
+                                    <th>Lampiran</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                $no = 1; foreach ($queryAduan as $r) { ?>
+                                <tr>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $r->id_pengaduan ?></td>
+                                    <td><?= tgl_indo(date("Y-m-d", strtotime($r->tgl_pengaduan))) ?></td>
+                                    <td><?= tgl_indo(date("Y-m-d", strtotime($r->tgl_kejadian))) ?></td>
+                                    <?php if ($this->uri->segment(2) == 'selesai') { ?>
+                                    <td><?= tgl_indo(date("Y-m-d", strtotime($r->tgl_selesai))) ?></td>
+                                    <?php } ?>
+                                    <td><?= $r->nik ?></td>
+                                    <td><?= $r->judul_laporan ?></td>
+                                    <td><?= $r->nama_kategori ?></td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModalScrollable<?= $r->id_pengaduan ?>">
+                                            Lihat
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                            data-bs-target="#galleryModal<?= $r->id_pengaduan ?>">
+                                            Lihat
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <?php if ($this->uri->segment(2) == 'vnv') { ?>
+                                        <a href="<?= site_url() ?>pengaduan/vnv/detail/<?= $r->id_pengaduan ?>"
+                                            class="btn btn-outline-primary">Detail</a>
+                                        <?php } else if ($this->uri->segment(2) == 'proses') { ?>
+                                        <a href="<?= site_url() ?>pengaduan/proses/detail/<?= $r->id_pengaduan ?>"
+                                            class="btn btn-outline-primary">Detail</a>
+                                        <?php } else if ($this->uri->segment(2) == 'ditolak') { ?>
+                                        <a href="#" class="btn badge bg-danger">Hapus</a>
+                                        <?php } else { ?>
+                                        <a href="<?= site_url() ?>pengaduan/selesai/detail/<?= $r->id_pengaduan ?>"
+                                            class="btn badge bg-info">Detail</a>
+                                        <?php } ?>
+                                    </td>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalScrollable<?= $r->id_pengaduan ?>"
+                                        tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalScrollableTitle">
+                                                        <?= $r->judul_laporan ?> -
+                                                        <?= $r->tgl_pengaduan ?>
+                                                    </h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <i data-feather="x"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <?= $r->isi_laporan ?>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light-secondary"
+                                                        data-bs-dismiss="modal">
+                                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                                        <span class="d-none d-sm-block">Close</span>
+                                                    </button>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
 
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
+                                    <div class="modal fade" id="galleryModal<?= $r->id_pengaduan ?>" tabindex="-1"
+                                        role="dialog" aria-labelledby="galleryModalTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered scrollable"
+                                            role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalScrollableTitle">
+                                                        <?= $r->judul_laporan ?> -
+                                                        <?= $r->tgl_pengaduan ?>
+                                                    </h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <i data-feather="x"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="alert alert-secondary" role="alert">
+
+                                                        <?php 
+                                                    $ekstensi_1 = substr($r->lampiran_1, -3); 
+                                                    if ($ekstensi_1 == 'mp4') { ?>
+                                                        Lampiran 1 - <b><?= $r->lampiran_1 ?></b> - <a
+                                                            href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_1 ?>"
+                                                            type="button" class="btn badge btn-primary mb-2"
+                                                            download>Download</a>
+                                                        <br>
+                                                        <video width="730" height="570" controls>
+                                                            <source
+                                                                src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik?>/<?= $r->lampiran_1 ?>"
+                                                                type="video/mp4">
+                                                            Your browser does not support the video tag.
+                                                        </video>
+                                                        <?php } else if($ekstensi_1 == 'pdf') { ?>
+                                                        Lampiran 1 - <b><?= $r->lampiran_1 ?></b> - <a
+                                                            href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_1 ?>"
+                                                            type="button" class="btn badge btn-primary mb-2"
+                                                            download>Download</a>
+                                                        <?php } else { ?>
+                                                        Lampiran 1 - <b><?= $r->lampiran_1 ?></b> - <a
+                                                            href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_1 ?>"
+                                                            type="button" class="btn badge btn-primary mb-2"
+                                                            download>Download</a>
+                                                        <br>
+                                                        <img src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_1 ?>"
+                                                            alt="<?= $r->lampiran_1 ?>" width="320" height="240">
+                                                        <?php } ?>
+
+                                                        <?php if ($r->lampiran_2 != null): ?>
+                                                        <hr>
+                                                        <?php 
+                                                    $ekstensi_2 = substr($r->lampiran_2, -3); 
+                                                    if ($ekstensi_2 == 'mp4') { ?>
+                                                        Lampiran 2 - <b><?= $r->lampiran_2 ?></b> - <a
+                                                            href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_2 ?>"
+                                                            type="button" class="btn badge btn-primary mb-2"
+                                                            download>Download</a>
+                                                        <br>
+                                                        <video width="730" height="570" controls>
+                                                            <source
+                                                                src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_2 ?>"
+                                                                type="video/mp4">
+                                                            Your browser does not support the video tag.
+                                                        </video>
+                                                        <?php } else if($ekstensi_2 == 'pdf') { ?>
+                                                        Lampiran 2 - <b><?= $r->lampiran_2 ?></b> - <a
+                                                            href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_2 ?>"
+                                                            type="button" class="btn badge btn-primary mb-2"
+                                                            download>Download</a>
+                                                        <?php } else { ?>
+                                                        Lampiran 2 - <b><?= $r->lampiran_2 ?></b> - <a
+                                                            href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_2 ?>"
+                                                            type="button" class="btn badge btn-primary mb-2"
+                                                            download>Download</a>
+                                                        <br>
+                                                        <img src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_2 ?>"
+                                                            alt="<?= $r->lampiran_2 ?>" width="320" height="240">
+                                                        <?php } ?>
+                                                        <?php endif; ?>
+
+                                                        <?php if ($r->lampiran_3 != null): ?>
+                                                        <hr>
+                                                        <?php 
+                                                    $ekstensi_3 = substr($r->lampiran_3, -3); 
+                                                                            if ($ekstensi_3 == 'mp4') { ?>
+                                                        Lampiran 3 - <b><?= $r->lampiran_3 ?></b> - <a
+                                                            href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_3 ?>"
+                                                            type="button" class="btn badge btn-primary mb-2"
+                                                            download>Download</a>
+                                                        <br>
+                                                        <video width="730" height="570" controls>
+                                                            <source
+                                                                src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_3 ?>"
+                                                                type="video/mp4">
+                                                            Your browser does not support the video tag.
+                                                        </video>
+                                                        <?php } else if($ekstensi_3 == 'pdf') { ?>
+                                                        Lampiran 3 - <b><?= $r->lampiran_3 ?></b> - <a
+                                                            href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_3 ?>"
+                                                            type="button" class="btn badge btn-primary mb-2"
+                                                            download>Download</a>
+                                                        <?php } else { ?>
+                                                        Lampiran 3 - <b><?= $r->lampiran_3 ?></b> - <a
+                                                            href="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_3 ?>"
+                                                            type="button" class="btn badge btn-primary mb-2"
+                                                            download>Download</a>
+                                                        <br>
+                                                        <img src="<?= base_url() ?>assets/images/laporan/pengaduan/<?= $r->nik ?>/<?= $r->lampiran_3 ?>"
+                                                            alt="<?= $r->lampiran_3 ?>" width="320" height="240">
+                                                        <?php } ?>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 

@@ -12,6 +12,9 @@
 <script src="<?= base_url() ?>assets/landing/js/jquery.counterup.min.js"></script>
 <script src="<?= base_url() ?>assets/landing/js/imgfix.min.js"></script>
 
+<script src="<?= base_url() ?>assets/extensions/choices.js/public/assets/scripts/choices.js"></script>
+<script src="<?= base_url() ?>assets/js/pages/form-element-select.js"></script>
+
 <!-- Global Init -->
 <script src="<?= base_url() ?>assets/landing/js/custom.js"></script>
 <!-- Dropify -->
@@ -19,6 +22,8 @@
 <!-- sweetalert2 -->
 <script src="<?= base_url() ?>assets/extensions/sweetalert2/sweetalert2.min.js"></script>
 <script src="<?= base_url() ?>assets/js/pages/sweetalert2.js"></script>
+<!-- flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
 $('.dropify').dropify({
