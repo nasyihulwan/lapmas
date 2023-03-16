@@ -7,9 +7,10 @@ body {
 }
 #auth #auth-right {
 	background: url(../../../assets/images/lapmas.png?45649b87e0b3f50bfa1372c6cdb4595f),
-		linear-gradient(90deg, #2d499d, #3f5491) fixed;
+		linear-gradient(90deg, #2d499d, #3f5491);
 	background-position: center;
 	background-repeat: no-repeat;
+	background-size: 150%;
 	height: 100%;
 }
 #auth #auth-left {
