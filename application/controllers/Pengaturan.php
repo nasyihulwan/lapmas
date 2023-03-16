@@ -7,6 +7,20 @@ class Pengaturan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_Pengaduan');
+        $this->load->model('M_Petugas');
+    }
+
+    public function profile()
+    {
+        $data['user'] = $this->M_Petugas->queryCurrentUser();
+        $data['title'] = 'Profile Saya';
+        $data['subtitle'] = '';
+        
+        $this->load->view('__partials/_head');
+        $this->load->view('__partials/_sidebar');
+        $this->load->view('pengaturan/profile', $data);
+        $this->load->view('__partials/_footer');
+        $this->load->view('__partials/_js');
     }
 
     public function kategori()
@@ -69,5 +83,27 @@ class Pengaturan extends CI_Controller
 
         redirect('pengaturan/kategori');
 
+    }
+    public function updateStatusMasyarakat()
+    {
+        $nik = $this->uri->segment(3);
+
+        $this->db->set('status', $this->input->post('status'));
+        $this->db->where('nik', $nik);
+        $this->db->update('masyarakat');
+
+        redirect('master/masyarakat');
+
+    }
+
+    public function updateStatusPetugas()
+    {
+        $id_petugas = $this->uri->segment(3);
+
+        $this->db->set('status', $this->input->post('status'));
+        $this->db->where('id_petugas', $id_petugas);
+        $this->db->update('petugas');
+
+        redirect('master/petugas');
     }
 }

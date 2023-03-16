@@ -23,28 +23,33 @@
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="username" placeholder="Username">
+                            <input type="text" class="form-control form-control-xl" name="username"
+                                placeholder="Username">
                             <?= form_error('username', '<small class="text-danger pl-2">', '</small>') ?>
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" class="form-control form-control-xl" name="password1" placeholder="Password">
+                            <input type="password" class="form-control form-control-xl" name="password1"
+                                placeholder="Password">
                             <?= form_error('password1', '<small class="text-danger pl-2">', '</small>') ?>
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" class="form-control form-control-xl" name="password2" placeholder="Confirm Password">
+                            <input type="password" class="form-control form-control-xl" name="password2"
+                                placeholder="Confirm Password">
                             <?= form_error('password2', '<small class="text-danger pl-2">', '</small>') ?>
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="telp" placeholder="Nomor Ponsel">
+                            <input type="text" class="form-control form-control-xl" name="telp"
+                                placeholder="Nomor Ponsel">
+                            <?= form_error('telp', '<small class="text-danger pl-2">', '</small>') ?>
                             <div class="form-control-icon">
                                 <i class="bi bi-phone"></i>
                             </div>
@@ -52,7 +57,8 @@
                         <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Sign Up</button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
-                        <p class='text-gray-600'>Sudah punya akun? <a href="<?= base_url() ?>auth/login" class="font-bold">Log
+                        <p class='text-gray-600'>Sudah punya akun? <a href="<?= base_url() ?>auth/login"
+                                class="font-bold">Log
                                 in</a>.</p>
                     </div>
                 </div>

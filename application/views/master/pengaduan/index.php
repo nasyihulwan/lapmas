@@ -13,12 +13,7 @@
                     <p class="text-subtitle text-muted"><?= $subtitle ?>
                     </p>
                 </div>
-
-
-
                 <?php $this->load->view("__partials/_breadcrumb.php") ?>
-
-
             </div>
         </div>
 
@@ -35,7 +30,6 @@
 
             <div class="card">
                 <div class="card-body">
-
                     <div class="table-responsive">
                         <table class="table" id="table1">
                             <thead>
@@ -264,6 +258,4 @@
 
         </section>
         <!-- Basic Tables end -->
-
-
     </div>

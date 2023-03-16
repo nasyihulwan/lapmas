@@ -74,7 +74,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <?php if ($this->session->userdata('level') == 'admin') { ?>
+                        <?php if ($this->session->userdata('level') == 'master admin' || $this->session->userdata('level') == 'admin') { ?>
                         <li class="sidebar-item <?php if ($this->uri->segment(2) == 'masyarakat') echo 'active' ?>">
                             <a href="<?= site_url() ?>master/masyarakat" class='sidebar-link'>
                                 <i class="bi bi-person-lines-fill"></i>
@@ -83,7 +83,7 @@
                         </li>
                         <li class="sidebar-item <?php if ($this->uri->segment(2) == 'petugas') echo 'active' ?>">
                             <a href="<?= site_url() ?>master/petugas" class='sidebar-link'>
-                                <i class="bi bi-bag-fill"></i>
+                                <i class="fa fa-user-tie"></i>
                                 <span>Petugas</span>
                             </a>
                         </li>
@@ -113,7 +113,13 @@
                                 </li>
                             </ul>
                         </li> -->
-                        <?php if ($this->session->userdata('level') == 'admin') { ?>
+                        <li class="sidebar-item">
+                            <a href="<?= site_url() ?>pengaturan/profile" class='sidebar-link'>
+                                <i class="fa fa-user"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <?php if ($this->session->userdata('level') == 'master admin' || $this->session->userdata('level') == 'admin') { ?>
                         <li class="sidebar-item">
                             <a href="<?= site_url() ?>user/add" class='sidebar-link'>
                                 <i class="bi bi-plus"></i>

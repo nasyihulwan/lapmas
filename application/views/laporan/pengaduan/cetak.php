@@ -1,7 +1,17 @@
 <div class="container">
     <div class="card mt-5">
         <div class="card-header">
-            <h4 class="card-title">Laporan Pengaduan Periode <?= $dari ?> - <?= $sampai ?></h4>
+            <h4 class="card-title text-center">
+                Laporan Pengaduan
+                <?php if ($status == '*') {
+                    echo "Semua Status";
+                } else if($status == '0') {
+                    echo "Pending";
+                } else {
+                    echo ucfirst($status);
+                } ?>
+                <br> Periode <?= $dari ?> - <?= $sampai ?>
+            </h4>
         </div>
         <div class="card-body">
             <div class="row">
@@ -9,8 +19,7 @@
                     <div class="card">
                         <div class="card-content">
                             <div class="card-body">
-
-                                <table class="table" id="table1">
+                                <table class="table">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -18,7 +27,6 @@
                                             <th>Tanggal Pengaduan</th>
                                             <th>NIK</th>
                                             <th>Judul Laporan</th>
-                                            <th style="width: 10%">Foto</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -30,8 +38,6 @@
                                             <td><?= $l->tgl_pengaduan ?></td>
                                             <td><?= $l->nik ?></td>
                                             <td><?= $l->judul_laporan ?></td>
-                                            <td><img src="<?= base_url() ?>assets/images/laporan/<?= $l->foto ?>"
-                                                    style="max-width: 100%" alt="<?= $l->foto ?>"></td>
                                             <?php if ($l->status == '0') { ?>
                                             <td><span class="badge bg-danger">Pending</span></td>
                                             <?php } else if($l->status == 'proses') { ?>

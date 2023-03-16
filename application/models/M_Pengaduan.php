@@ -167,6 +167,7 @@ class M_Pengaduan extends CI_Model
         $data = [
             'id_tolak' => rand(10000, 99999),
             'id_pengaduan' => $id,
+            'alasan' => $this->input->post('alasan_tolak'),
             'id_petugas' => $this->session->userdata('id_petugas')
         ];
 

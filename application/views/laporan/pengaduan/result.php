@@ -11,7 +11,6 @@
                                 <th>Tanggal Pengaduan</th>
                                 <th>NIK</th>
                                 <th>Judul Laporan</th>
-                                <th style="width: 10%">Foto</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -23,8 +22,6 @@
                                 <td><?= $l->tgl_pengaduan ?></td>
                                 <td><?= $l->nik ?></td>
                                 <td><?= $l->judul_laporan ?></td>
-                                <td><img src="<?= base_url() ?>assets/images/laporan/<?= $l->foto ?>"
-                                        style="max-width: 100%" alt="<?= $l->foto ?>"></td>
                                 <?php if ($l->status == '0') { ?>
                                 <td><span class="badge bg-danger">Pending</span></td>
                                 <?php } else if($l->status == 'proses') { ?>

@@ -173,3 +173,59 @@ Swal.fire({
 })
 </script>
 <?php endif; ?>
+
+<?php if ($this->session->flashdata('addMasyarakatSuccess')): ?>
+<script>
+let timerInterval
+Swal.fire({
+    icon: 'success',
+    title: 'Data Masyarakat berhasil ditambah!',
+    html: 'Menutup otomatis dalam <b></b> milidetik.',
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+        }, 100)
+    },
+    willClose: () => {
+        clearInterval(timerInterval)
+    }
+}).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+    }
+})
+</script>
+<?php endif; ?>
+
+<?php if ($this->session->flashdata('addPetugasSuccess')): ?>
+<script>
+let timerInterval
+Swal.fire({
+    icon: 'success',
+    title: 'Data Petugas berhasil ditambah!',
+    html: 'Menutup otomatis dalam <b></b> milidetik.',
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+        }, 100)
+    },
+    willClose: () => {
+        clearInterval(timerInterval)
+    }
+}).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+    }
+})
+</script>
+<?php endif; ?>

@@ -6,15 +6,18 @@
                     <form action="" method="post">
                         <h6>Nama Petugas</h6>
                         <div class="form-group position-relative has-icon-left mb-3">
-                            <input type="text" class="form-control" name="id_petugas" hidden />
-                            <input type="text" class="form-control" placeholder="Nama Petugas" name="nama_petugas" />
+                            <input type="text" class="form-control" placeholder="Nama Petugas" name="nama_petugas"
+                                value="<?= set_value('nama_petugas') ?>" />
+                            <?= form_error('nama_petugas', '<small class="text-danger pl-2">', '</small>') ?>
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
                         </div>
                         <h6>Username</h6>
                         <div class="form-group position-relative has-icon-left mb-3">
-                            <input type="text" class="form-control" placeholder="Username" name="username" />
+                            <input type="text" class="form-control" placeholder="Username" name="username"
+                                value="<?= set_value('username') ?>" />
+                            <?= form_error('username', '<small class="text-danger pl-2">', '</small>') ?>
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
@@ -36,7 +39,9 @@
                         </div>
                         <h6>Nomor Ponsel / Telp</h6>
                         <div class="form-group position-relative has-icon-left mb-3">
-                            <input type="text" class="form-control" placeholder="Nomor Ponsel / Telp" name="telp" />
+                            <input type="text" class="form-control" placeholder="Nomor Ponsel / Telp" name="telp"
+                                value="<?= set_value('telp') ?>" />
+                            <?= form_error('telp', '<small class="text-danger pl-2">', '</small>') ?>
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>

@@ -51,11 +51,11 @@ document.addEventListener("DOMContentLoaded", function() {
 <?php $empat = 4; ?>
 <?php $lima = 5; ?>
 <script>
-// var sangatPuas = document.getElementById('sangatPuas').value;
-// var puas = document.getElementById('puas').value;
-// var tidakPuas = document.getElementById('tidakPuas').value;
-// var kurangPuas = document.getElementById('kurangPuas').value;
-// var sangatTidakPuas = document.getElementById('sangatTidakPuas').value;
+var sangatPuas = document.getElementById('sangatPuas').value;
+var puas = document.getElementById('puas').value;
+var tidakPuas = document.getElementById('tidakPuas').value;
+var kurangPuas = document.getElementById('kurangPuas').value;
+var sangatTidakPuas = document.getElementById('sangatTidakPuas').value;
 
 var optionsUlasan = {
     annotations: {
@@ -74,7 +74,7 @@ var optionsUlasan = {
     plotOptions: {},
     series: [{
         name: "Jumlah Ulasan",
-        data: [<?= $satu ?>, <?= $dua ?>, <?= $tiga ?>, <?= $empat ?>, <?= $lima ?>]
+        data: [sangatPuas, puas, tidakPuas, kurangPuas, sangatTidakPuas]
     }, ],
     colors: "#9694FF",
     xaxis: {

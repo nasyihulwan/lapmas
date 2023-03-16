@@ -8,7 +8,7 @@ class Masyarakat extends CI_Controller
         parent::__construct();
         $this->load->model('M_Masyarakat');
         
-        if ($this->session->userdata('level') != 'admin') {
+        if ($this->session->userdata('level') != 'master admin' && $this->session->userdata('level') != 'admin') {
             redirect('dashboard');
         }
     }
