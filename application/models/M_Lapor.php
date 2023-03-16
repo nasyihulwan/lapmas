@@ -89,7 +89,11 @@ class M_Lapor extends CI_Model
 
     function getPengaduanKategori()
     {
-        $this->db->query('SELECT * FROM pengaduan_kategori ORDER BY nama_kategori ASC');
-        return $this->db->get('pengaduan_kategori')->result();
+        // $this->db->query('SELECT * FROM pengaduan_kategori WHERE is_checked=1 ORDER BY nama_kategori ASC');
+        $this->db->select('*');
+        $this->db->from('pengaduan_kategori');
+        $this->db->where('is_checked', '1');
+        $this->db->order_by('nama_kategori', 'ASC');
+        return $this->db->get()->result();
     }
 }

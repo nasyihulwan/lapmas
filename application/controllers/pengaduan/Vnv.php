@@ -49,12 +49,6 @@ class Vnv extends CI_Controller
 
     public function tolak()
     {
-        $id = $this->uri->segment(4);
-
-        $this->db->set('status', 'tolak');
-        $this->db->where('id_pengaduan', $id);
-        $this->db->update('pengaduan');
-        redirect('pengaduan/vnv');
+        $this->M_Pengaduan->tolakPengaduan();
     }
-
 }

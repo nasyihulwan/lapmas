@@ -142,7 +142,8 @@ class M_Pengaduan extends CI_Model
             'tgl_selesai' => date('Y-m-d'),
             'lampiran_1' => $lampiran_1,
             'lampiran_2' => $lampiran_2,
-            'lampiran_3' => $lampiran_3
+            'lampiran_3' => $lampiran_3,
+            'id_petugas' => $this->session->userdata('id_petugas')
         ];
 
         $this->db->insert('pengaduan_selesai', $data);
@@ -153,5 +154,31 @@ class M_Pengaduan extends CI_Model
 
         $this->session->set_flashdata('updateSelesai', 'Action Completed');
         redirect('pengaduan/proses');
+    }
+
+    public function tolakPengaduan()
+    {
+        $id = $this->uri->segment(4);
+
+        $this->db->set('status', 'tolak');
+        $this->db->where('id_pengaduan', $id);
+        $this->db->update('pengaduan');
+
+        $data = [
+            'id_tolak' => rand(10000, 99999),
+            'id_pengaduan' => $id,
+            'id_petugas' => $this->session->userdata('id_petugas')
+        ];
+
+        $this->db->insert('pengaduan_ditolak', $data);
+
+        $this->session->set_flashdata('tolakSuccess', 'Action Completed');
+        redirect('pengaduan/vnv');
+    }
+
+    function getPengaduanKategori()
+    {
+        $this->db->query('SELECT * FROM pengaduan_kategori ORDER BY nama_kategori ASC');
+        return $this->db->get('pengaduan_kategori')->result();
     }
 }

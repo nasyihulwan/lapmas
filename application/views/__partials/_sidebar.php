@@ -120,6 +120,12 @@
                                 <span>Tambah User Baru</span>
                             </a>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="<?= site_url() ?>pengaturan/kategori" class='sidebar-link'>
+                                <i class="fa fa-list"></i>
+                                <span>Kategori Pengaduan</span>
+                            </a>
+                        </li>
                         <?php } ?>
 
                         <li class="sidebar-item">

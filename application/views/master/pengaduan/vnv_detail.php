@@ -106,8 +106,10 @@
                                         </div>
 
                                         <div class="col-6">
-                                            <a href="#" id="tolak"
-                                                class="setujui btn btn-block btn-danger me-1 mb-1">Tolak</a>
+                                            <button type="button" class="btn btn-block btn-outline-danger"
+                                                data-bs-toggle="modal" data-bs-target="#default">
+                                                Tolak
+                                            </button>
                                         </div>
                                         <div class="col-6">
                                             <a href="#" id="setujui"
@@ -261,5 +263,53 @@
             </div>
         </div>
 
-
+        <div class="modal fade text-left" id="default" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <form action="<?= site_url() ?>pengaduan/vnv/tolak/<?=$queryAduan['p_id']?>" method="post">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel1">
+                                Basic Modal
+                            </h5>
+                            <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                                <i data-feather="x"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-secondary" role="alert">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                <span>Silahkan input alasan Anda menolak Pengaduan ini.</span>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="alasan_tolak" cols="15" rows="2.5" placeholder="Alasan" maxlength="50"
+                                    class="form-control" required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-bs-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Close</span>
+                            </button>
+                            <button type="submit" class="btn btn-danger ml-1">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Tolak</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script src="<?= base_url() ?>assets/extensions/jquery/jquery.min.js"></script>
+    <script src="<?= base_url() ?>assets/js/extensions/bootstrap-maxlength.min.js"></script>
+    <script>
+    // Setup maxlength
+    $('.alasan_tolak').maxlength({
+        alwaysShow: true,
+        validate: false,
+        allowOverMax: true,
+        customMaxAttribute: "50",
+    });
+    </script>

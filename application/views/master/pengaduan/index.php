@@ -25,11 +25,14 @@
         <!-- Basic Tables start -->
         <section class="section">
             <?= $this->session->flashdata('message') ?>
+            <?php if ($this->uri->segment(2) == 'ditolak') { ?>
             <div class="alert alert-dark" role="alert">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                 Anda dapat memulihkan kembali pengaduan yang belum
                 dihapus.
             </div>
+            <?php } ?>
+
             <div class="card">
                 <div class="card-body">
 
@@ -90,8 +93,9 @@
                                         <a href="<?= site_url() ?>pengaduan/proses/detail/<?= $r->id_pengaduan ?>"
                                             class="btn btn-outline-primary">Detail</a>
                                         <?php } else if ($this->uri->segment(2) == 'ditolak') { ?>
-                                        <a href="#" class="btn btn-outline-secondary">Pulihkan</a>
-                                        <a href="#" class="btn btn-outline-danger">Hapus</a>
+                                        <input id="id_pengaduan_row" type="hidden" value="<?= $r->id_pengaduan ?>">
+                                        <a id="pulihkanTolak" href="#" class="btn btn-outline-secondary">Pulihkan</a>
+                                        <a id="hapusTolak" href="#" class="btn btn-outline-danger">Hapus</a>
                                         <?php } else { ?>
                                         <a href="<?= site_url() ?>pengaduan/selesai/detail/<?= $r->id_pengaduan ?>"
                                             class="btn btn-outline-secondary"><i class="fa fa-print"
