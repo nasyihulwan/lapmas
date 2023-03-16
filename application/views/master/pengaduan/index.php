@@ -25,8 +25,14 @@
         <!-- Basic Tables start -->
         <section class="section">
             <?= $this->session->flashdata('message') ?>
+            <div class="alert alert-dark" role="alert">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                Anda dapat memulihkan kembali pengaduan yang belum
+                dihapus.
+            </div>
             <div class="card">
                 <div class="card-body">
+
                     <div class="table-responsive">
                         <table class="table" id="table1">
                             <thead>
@@ -41,8 +47,10 @@
                                     <th>NIK</th>
                                     <th>Judul Laporan</th>
                                     <th>Kategori</th>
+                                    <?php if ($this->uri->segment(2) != 'selesai') { ?>
                                     <th>Isi Laporan</th>
                                     <th>Lampiran</th>
+                                    <?php } ?>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -60,6 +68,7 @@
                                     <td><?= $r->nik ?></td>
                                     <td><?= $r->judul_laporan ?></td>
                                     <td><?= $r->nama_kategori ?></td>
+                                    <?php if ($this->uri->segment(2) != 'selesai') { ?>
                                     <td>
                                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModalScrollable<?= $r->id_pengaduan ?>">
@@ -72,6 +81,7 @@
                                             Lihat
                                         </button>
                                     </td>
+                                    <?php } ?>
                                     <td>
                                         <?php if ($this->uri->segment(2) == 'vnv') { ?>
                                         <a href="<?= site_url() ?>pengaduan/vnv/detail/<?= $r->id_pengaduan ?>"
@@ -80,10 +90,14 @@
                                         <a href="<?= site_url() ?>pengaduan/proses/detail/<?= $r->id_pengaduan ?>"
                                             class="btn btn-outline-primary">Detail</a>
                                         <?php } else if ($this->uri->segment(2) == 'ditolak') { ?>
-                                        <a href="#" class="btn badge bg-danger">Hapus</a>
+                                        <a href="#" class="btn btn-outline-secondary">Pulihkan</a>
+                                        <a href="#" class="btn btn-outline-danger">Hapus</a>
                                         <?php } else { ?>
                                         <a href="<?= site_url() ?>pengaduan/selesai/detail/<?= $r->id_pengaduan ?>"
-                                            class="btn badge bg-info">Detail</a>
+                                            class="btn btn-outline-secondary"><i class="fa fa-print"
+                                                aria-hidden="true"></i> Print</a>
+                                        <a href="<?= site_url() ?>pengaduan/selesai/detail/<?= $r->id_pengaduan ?>"
+                                            class="btn btn-outline-primary">Detail</a>
                                         <?php } ?>
                                     </td>
                                     <!-- Modal -->

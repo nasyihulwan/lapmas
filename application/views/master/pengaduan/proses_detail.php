@@ -167,9 +167,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         <?php } ?>
-
 
                                         <div class="col-12 d-flex justify-content-end">
                                             <?php 

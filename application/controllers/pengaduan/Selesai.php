@@ -7,6 +7,7 @@ class Selesai extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_Pengaduan');
+        $this->load->model('M_Tanggapan');
         
     }
 
@@ -26,7 +27,8 @@ class Selesai extends CI_Controller
 
     function detail($id_pengaduan) 
     {
-        $data['queryAduan'] = $this->M_Pengaduan->queryDetailPengaduan($id_pengaduan);
+        $data['queryAduan'] = $this->M_Pengaduan->queryDetailPengaduanSelesai($id_pengaduan);
+        $data['getDate'] = $this->M_Tanggapan->getDate($id_pengaduan);
         $data['title'] = 'Data Pengaduan - Selesai Detail';
         $data['subtitle'] = 'Detail data pengaduan dengan status selesai';
         

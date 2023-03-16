@@ -31,9 +31,10 @@ class M_Pengaduan extends CI_Model
 
     function queryPengaduanSelesai()
     {
-        $this->db->select('*');
+        $this->db->select('pengaduan.id_pengaduan as p_id,pengaduan_selesai.id_pengaduan as ps_id,pengaduan.*,pengaduan_kategori.*,pengaduan_selesai.*');
         $this->db->from('pengaduan');
         $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
+        $this->db->join('pengaduan_selesai', 'pengaduan.id_pengaduan = pengaduan_selesai.id_pengaduan');
         $this->db->where('status', 'selesai');
         return $this->db->get()->result();
 
@@ -41,13 +42,25 @@ class M_Pengaduan extends CI_Model
 
     function queryDetailPengaduan($id_pengaduan)
     {
-        // return $this->db->get_where('pengaduan', ['id_pengaduan' => $id_pengaduan])->row_array();
-
         $this->db->where('pengaduan.id_pengaduan', $id_pengaduan);
         $this->db->select('pengaduan.*, pengaduan.id_pengaduan as p_id, tanggapan.*, tanggapan.id_pengaduan as t_id,pengaduan_kategori.*');
         $this->db->from('pengaduan');
         $this->db->join('tanggapan', 'pengaduan.id_pengaduan = tanggapan.id_pengaduan', 'LEFT');
         $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
+        return $this->db->get()->row_array();
+    }
+
+    function queryDetailPengaduanSelesai($id_pengaduan)
+    {
+        $this->db->where('pengaduan.id_pengaduan', $id_pengaduan);
+        $this->db->select('
+            pengaduan.*, pengaduan.id_pengaduan as p_id, tanggapan.*, tanggapan.id_pengaduan as t_id,pengaduan_kategori.*,tgl_selesai,petugas.*,pengaduan_selesai.lampiran_1 as ls_1,pengaduan_selesai.lampiran_2 as ls_2,pengaduan_selesai.lampiran_3 as ls_3
+        ');
+        $this->db->from('pengaduan');
+        $this->db->join('tanggapan', 'pengaduan.id_pengaduan = tanggapan.id_pengaduan', 'LEFT');
+        $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
+        $this->db->join('pengaduan_selesai', 'pengaduan.id_pengaduan = pengaduan_selesai.id_pengaduan');
+        $this->db->join('petugas', 'pengaduan_selesai.id_petugas = petugas.id_petugas');
         return $this->db->get()->row_array();
     }
 
