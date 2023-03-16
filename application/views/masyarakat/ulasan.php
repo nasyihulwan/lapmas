@@ -47,34 +47,34 @@
                                                     autocomplete="off" value="Sangat Puas" <?php if ($countUlasan != null) {
                                                             if ($ulasan['tingkat_kepuasan'] == 'Sangat Puas') { echo "checked"; }
                                                         }  ?> />
-                                                <label class="btn btn-outline-success" for="sangat_puas">Sangat
+                                                <label class="btn btn-outline-primary" for="sangat_puas">Sangat
                                                     Puas</label>
 
                                                 <input type="radio" class="btn-check" name="tk" id="puas"
                                                     autocomplete="off" value="Puas" <?php if ($countUlasan != null) {
                                                             if ($ulasan['tingkat_kepuasan'] == 'Puas') { echo "checked"; }
                                                         }  ?> />
-                                                <label class="btn btn-outline-success" for="puas">Puas</label>
+                                                <label class="btn btn-outline-primary" for="puas">Puas</label>
 
                                                 <input type="radio" class="btn-check" name="tk" id="kurang_puas"
                                                     autocomplete="off" value="Kurang Puas" <?php if ($countUlasan != null) {
                                                             if ($ulasan['tingkat_kepuasan'] == 'Kurang Puas') { echo "checked"; }
                                                         }  ?> />
-                                                <label class="btn btn-outline-warning" for="kurang_puas">Kurang
+                                                <label class="btn btn-outline-primary" for="kurang_puas">Kurang
                                                     Puas</label>
 
                                                 <input type="radio" class="btn-check" name="tk" id="tidak_puas"
                                                     autocomplete="off" value="Tidak Puas" <?php if ($countUlasan != null) {
                                                             if ($ulasan['tingkat_kepuasan'] == 'Tidak Puas') { echo "checked"; }
                                                         }  ?> />
-                                                <label class="btn btn-outline-danger" for="tidak_puas">Tidak
+                                                <label class="btn btn-outline-primary" for="tidak_puas">Tidak
                                                     Puas</label>
 
                                                 <input type="radio" class="btn-check" name="tk" id="sangat_tidak_puas"
                                                     autocomplete="off" value="Sangat Tidak Puas" <?php if ($countUlasan != null) {
                                                             if ($ulasan['tingkat_kepuasan'] == 'Sangat Tidak Puas') { echo "checked"; }
                                                         }  ?> />
-                                                <label class="btn btn-outline-danger" for="sangat_tidak_puas">Sangat
+                                                <label class="btn btn-outline-primary" for="sangat_tidak_puas">Sangat
                                                     Tidak
                                                     Puas</label>
                                             </div>

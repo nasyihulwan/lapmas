@@ -10,10 +10,14 @@ class M_Masyarakat extends CI_Model
 
     function _sendTanggapanBalik()
     {
-        $this->db->set('tanggapan_balik', $this->input->post('tanggapan_balik'));
+        $data = [
+            'tgl_tanggapan_balik' => date('Y-m-d'),
+            'tanggapan_balik' => $this->input->post('tanggapan_balik')
+        ];
+        
         $this->db->where('id_pengaduan', $this->uri->segment(3));
-        $this->db->update('tanggapan');
-        $this->session->set_flashdata('message', '<div class="alert alert-success">Tanggapan berhasil dikirim</div>');
+        $this->db->update('tanggapan', $data);
+        $this->session->set_flashdata('sendTanggapanBalikSuccess', 'Action Completed');
         redirect('masyarakat/laporan');
     }
 

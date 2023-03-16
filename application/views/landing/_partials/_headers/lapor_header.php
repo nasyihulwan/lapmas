@@ -14,7 +14,6 @@
                      <ul class="nav">
                          <li><a href="#welcome" class="active">Home</a></li>
                          <li><a href="#work-process">Proses Kerja</a></li>
-                         <li><a href="#contact-us">Hubungi Kami</a></li>
                          <?php if ($this->session->userdata('nik') != null) { ?>
                          <li><a href="<?= site_url() ?>masyarakat">Dashboard</a></li>
                          <li><a href="<?= site_url() ?>auth/m_logout">Keluar</a></li>

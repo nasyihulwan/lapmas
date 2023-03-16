@@ -14,8 +14,8 @@
                      <ul class="nav">
                          <li><a href="#welcome" class="active">Home</a></li>
                          <!-- <li><a href="#features">About</a></li> -->
+                         <li><a href="#features">Keunggulan</a></li>
                          <li><a href="#testimonials">Ulasan</a></li>
-                         <li><a href="#contact-us">Hubungi Kami</a></li>
                          <?php if ($this->session->userdata('nik') != null) { ?>
                          <li><a href="<?= site_url() ?>lapor">Lapor</a></li>
                          <li><a href="<?= site_url() ?>masyarakat">Dashboard</a></li>

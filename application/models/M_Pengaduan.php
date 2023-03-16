@@ -73,11 +73,12 @@ class M_Pengaduan extends CI_Model
     }
     function queryPengaduanCurrentSession()
     {
-        // return $this->db->get_where('pengaduan', ['nik' => $this->session->userdata('nik')])->result();
-        $this->db->select('pengaduan.*, pengaduan.id_pengaduan as p_id, tanggapan.*, tanggapan.id_pengaduan as t_id,pengaduan_kategori.*');
+        $this->db->select('pengaduan.*, pengaduan.id_pengaduan as p_id, tanggapan.*, tanggapan.id_pengaduan as t_id,pengaduan_kategori.*,tgl_selesai,pengaduan_selesai.lampiran_1 as ls_1,pengaduan_selesai.lampiran_2 as ls_2,pengaduan_selesai.lampiran_3 as ls_3,pengaduan_ditolak.alasan');
         $this->db->from('pengaduan');
         $this->db->join('tanggapan', 'pengaduan.id_pengaduan = tanggapan.id_pengaduan', 'LEFT');
         $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
+        $this->db->join('pengaduan_selesai', 'pengaduan.id_pengaduan = pengaduan_selesai.id_pengaduan', 'LEFT');
+        $this->db->join('pengaduan_ditolak', 'pengaduan.id_pengaduan = pengaduan_ditolak.id_pengaduan', 'LEFT');
         $this->db->where('nik', $this->session->userdata('nik'));
         return $this->db->get()->result();
     }
@@ -85,7 +86,6 @@ class M_Pengaduan extends CI_Model
     function _selesai()
     {
         $id_pengaduan = $this->input->post('id_pengaduan');
-
          // Check image yang akan di upload
          $lampiran_1 = $_FILES['lampiran_1']['name'];
          $lampiran_2 = $_FILES['lampiran_2']['name'];
@@ -105,7 +105,6 @@ class M_Pengaduan extends CI_Model
                 redirect('lapor');
             }
         }
-
         if ($lampiran_2) {
             $config['allowed_types'] = 'jpg|jpeg|png|pdf|mp4';
             $config['max_size'] = '10240';
