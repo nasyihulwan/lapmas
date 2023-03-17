@@ -80,4 +80,12 @@ class Pengaduan extends CI_Controller
         $this->load->view('laporan/pengaduan/cetak', $data);
         $this->load->view('__partials/_js');
     }
+    
+    public function cetakSelesai($id_pengaduan)
+    {
+        $data['ls'] = $this->M_Laporan->cetakLaporanSelesai();
+        $this->load->view('__partials/_head');
+        $this->load->view('laporan/pengaduan/cetak_selesai', $data);
+        $this->load->view('__partials/_js');
+    }
 }

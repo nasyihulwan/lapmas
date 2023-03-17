@@ -8,6 +8,7 @@ class Masyarakat extends CI_Controller
         parent::__construct();
         $this->load->model('M_Pengaduan');
         $this->load->model('M_Masyarakat');
+        $this->load->model('M_User');
         
         if ($this->session->userdata('nik') == null) {
             redirect('auth/login');
@@ -62,5 +63,17 @@ class Masyarakat extends CI_Controller
     public function tanggapanBalik() {
         $this->M_Masyarakat->_sendTanggapanBalik();
         
+    }
+
+    public function profile()
+    {
+        $data['user'] = $this->M_User->getMasyarakatCurrentSession();
+        $data['title'] = 'Profil Saya';
+
+        $this->load->view('__partials/_head');
+        $this->load->view('__partials/masyarakat_topbar');
+        $this->load->view('masyarakat/profile', $data);
+        $this->load->view('__partials/_footer');
+        $this->load->view('__partials/_js');
     }
 }

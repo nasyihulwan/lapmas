@@ -34,4 +34,9 @@ class M_User extends CI_Model
         redirect('master/petugas');
     }
 
+    function getMasyarakatCurrentSession()
+    {
+        return $this->db->get_where('masyarakat', ['nik' => $this->session->userdata('nik')])->row_array();
+    }
+
 }
