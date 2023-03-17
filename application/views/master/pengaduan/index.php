@@ -91,7 +91,7 @@
                                         <a id="pulihkanTolak" href="#" class="btn btn-outline-secondary">Pulihkan</a>
                                         <a id="hapusTolak" href="#" class="btn btn-outline-danger">Hapus</a>
                                         <?php } else { ?>
-                                        <a href="<?= site_url() ?>pengaduan/selesai/detail/<?= $r->id_pengaduan ?>"
+                                        <a href="<?= site_url() ?>laporan/pengaduan/cetakSelesai/<?= $r->id_pengaduan ?>"
                                             class="btn btn-outline-secondary"><i class="fa fa-print"
                                                 aria-hidden="true"></i> Print</a>
                                         <a href="<?= site_url() ?>pengaduan/selesai/detail/<?= $r->id_pengaduan ?>"

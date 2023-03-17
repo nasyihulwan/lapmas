@@ -77,7 +77,8 @@
                                                         data-bs-target="#default<?= $l->id_pengaduan ?>">
                                                         Lihat Tanggapan Saya
                                                     </button>
-                                                    <a href="#" class="btn badge bg-secondary">
+                                                    <a href="<?= site_url() ?>laporan/pengaduan/cetakSelesai/<?= $l->id_pengaduan ?>"
+                                                        class="btn badge bg-secondary">
                                                         <i class="fa fa-print" aria-hidden="true"></i>
                                                         Print
                                                     </a>
