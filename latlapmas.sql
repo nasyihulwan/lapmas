@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2023 at 02:12 AM
+-- Generation Time: Mar 19, 2023 at 07:32 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -74,8 +74,8 @@ CREATE TABLE `pengaduan` (
 --
 
 INSERT INTO `pengaduan` (`id_pengaduan`, `tgl_pengaduan`, `tgl_kejadian`, `nik`, `judul_laporan`, `isi_laporan`, `tempat_kejadian`, `lampiran_1`, `lampiran_2`, `lampiran_3`, `kategori`, `status`) VALUES
-(17256, '2023-03-16', '2023-03-01', '3273241103050003', 'COBA', '123', 'KAMBOJA', 'Blue_Illustration_Sleep_Tips_Infographic_Poster.png', '', '', 'KAT10000', 'selesai'),
-(28890, '2023-03-16', '2023-03-01', '3273241103050003', 'COBA', 'ASD', 'ASD', 'Blue_Illustration_Sleep_Tips_Infographic_Poster1.png', '', '', 'KAT10000', 'tolak');
+(17256, '2023-03-16', '2023-03-01', '3273241103050003', 'Jalan Berlubang', 'Jalan Berlubang Menggangu, Takutnya Ada Yang Celaka', 'KAMBOJA', 'jalan_berlubang.jpeg', '', '', 'KAT10001', 'selesai'),
+(28890, '2023-03-16', '2023-03-01', '3273241103050003', 'Pencurian Di Rumah', 'Pencurian barang berharga, tolong segera tangkap', 'Bojong Awi Kaler, No. 116', 'pencuri.jpeg', '', '', 'KAT10000', 'tolak');
 
 -- --------------------------------------------------------
 
@@ -95,7 +95,7 @@ CREATE TABLE `pengaduan_ditolak` (
 --
 
 INSERT INTO `pengaduan_ditolak` (`id_tolak`, `id_pengaduan`, `alasan`, `id_petugas`) VALUES
-(12345, 28890, 'CEK', 1);
+(73224, 28890, 'ASD', 1);
 
 -- --------------------------------------------------------
 
@@ -138,7 +138,7 @@ CREATE TABLE `pengaduan_selesai` (
 --
 
 INSERT INTO `pengaduan_selesai` (`id_selesai`, `id_pengaduan`, `tgl_selesai`, `lampiran_1`, `lampiran_2`, `lampiran_3`, `id_petugas`) VALUES
-(82028, 17256, '2023-03-16', 'hehe2.png', '', '', 1);
+(82028, 17256, '2023-03-16', 'perbaikan_jalan.jpg', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -186,7 +186,7 @@ CREATE TABLE `tanggapan` (
 --
 
 INSERT INTO `tanggapan` (`id_tanggapan`, `id_pengaduan`, `tgl_tanggapan`, `tgl_tanggapan_balik`, `tanggapan`, `tanggapan_balik`, `id_petugas`) VALUES
-(95252, 17256, '2023-03-16', '2023-03-16', 'OKE', 'A', 1);
+(95252, 17256, '2023-03-16', '2023-03-16', 'SEGERA LAKSANAKAN', 'MANTAP', 1);
 
 -- --------------------------------------------------------
 
@@ -208,12 +208,12 @@ CREATE TABLE `ulasan_masyarakat` (
 --
 
 INSERT INTO `ulasan_masyarakat` (`id_ulasan`, `nik`, `tgl_tanggapan`, `ulasan`, `tingkat_kepuasan`, `is_censored`) VALUES
-(10000, '3273241103050003', '2023-03-01', 'MANTAP LAPMAS! TIDAK PERLU UANG UNTUK MENYELESAIKAN TUGAS! TIDAK SEPERTI APARAT DI NEGARA WAKANDA', 'Sangat Puas', '1'),
 (10001, '3273241805140005', '2023-03-09', 'MANTAP', 'Sangat Puas', '0'),
 (10002, '098765', '2023-03-09', 'Admin tidak ramah', 'Kurang Puas', '0'),
 (10003, '110305', '2023-03-09', 'Admin wibu, selebihnya oke', 'Puas', '1'),
 (10004, '1298674189', '2023-03-09', 'ORAORAORAORAORA', 'Tidak Puas', '0'),
-(10005, '91857189', '2023-03-09', 'NICE!', 'Sangat Puas', '0');
+(10005, '91857189', '2023-03-09', 'NICE!', 'Sangat Puas', '0'),
+(10006, '3273241103050003', '2023-03-19', 'MANTAP LAPMAS!!!!', 'Sangat Puas', '1');
 
 --
 -- Indexes for dumped tables
