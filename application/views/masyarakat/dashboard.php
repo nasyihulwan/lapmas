@@ -27,7 +27,6 @@
                             </div>
                         </div>
                     </div>
-                    <?php if ($this->db->get_where('pengaduan', ['nik' => $this->session->userdata('nik'), 'status' => '0'])->num_rows() >= 1) { ?>
                     <div class="col-6 col-lg-3 col-md-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
@@ -47,8 +46,6 @@
                             </div>
                         </div>
                     </div>
-                    <?php }  ?>
-                    <?php if ($this->db->get_where('pengaduan', ['nik' => $this->session->userdata('nik'), 'status' => 'proses'])->num_rows() >= 1) { ?>
                     <div class="col-6 col-lg-3 col-md-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
@@ -68,8 +65,6 @@
                             </div>
                         </div>
                     </div>
-                    <?php }  ?>
-                    <?php if ($this->db->get_where('pengaduan', ['nik' => $this->session->userdata('nik'), 'status' => 'selesai'])->num_rows() >= 1) { ?>
                     <div class="col-6 col-lg-3 col-md-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
@@ -89,7 +84,6 @@
                             </div>
                         </div>
                     </div>
-                    <?php }  ?>
                 </div>
             </div>
             <!-- <div class="col-12 col-lg-3">

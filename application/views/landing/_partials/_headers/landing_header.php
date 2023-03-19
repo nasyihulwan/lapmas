@@ -21,10 +21,8 @@
                          <li><a href="<?= site_url() ?>masyarakat">Dashboard</a></li>
                          <li><a href="<?= site_url() ?>auth/m_logout">Keluar</a></li>
                          <?php } else { ?>
+                         <li><a href="#statistik">Statistik</a></li>
                          <li><a href="<?= site_url() ?>auth/login">Masuk</a></li>
-                         <?php if ($this->session->userdata('id_petugas') == null) { ?>
-                         <li><a href="<?= site_url() ?>auth/register">Daftar</a></li>
-                         <?php } ?>
                          <?php } ?>
 
                      </ul>

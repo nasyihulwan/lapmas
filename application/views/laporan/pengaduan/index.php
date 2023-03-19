@@ -29,7 +29,7 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <?php if ($this->uri->segment(3) == 'result') { ?>
-                                <form action="<?= base_url() ?>laporan/pengaduan/cetak" method="post">
+                                <form action="<?= base_url() ?>laporan/pengaduan/cetak" method="post" target="_blank">
                                     <?php } else { ?>
                                     <form action="<?= base_url() ?>laporan/pengaduan/result" method="post">
                                         <?php } ?>
@@ -47,6 +47,10 @@
                                                 <option value="selesai"
                                                     <?php if ($status == 'selesai'){ echo "selected"; } ?>>
                                                     Selesai
+                                                </option>
+                                                <option value="tolak"
+                                                    <?php if ($status == 'tolak'){ echo "selected"; } ?>>
+                                                    Ditolak
                                                 </option>
                                                 <option value="*" <?php if ($status == '*') { echo "selected"; } ?>>
                                                     Semua

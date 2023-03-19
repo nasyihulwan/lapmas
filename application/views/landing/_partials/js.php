@@ -36,6 +36,8 @@ $('.dropify').dropify({
 });
 </script>
 
+
+
 <?php if ($this->uri->segment(1) == 'lapor') { $this->load->view('landing/_partials/lapor_js'); } ?>
 
 </body>

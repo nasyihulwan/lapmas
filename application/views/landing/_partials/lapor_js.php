@@ -97,3 +97,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+
+<script>
+document.getElementById("petunjuk").addEventListener("click", async (e) => {
+    alert('123');
+});
+</script>

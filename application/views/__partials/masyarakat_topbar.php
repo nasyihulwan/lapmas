@@ -52,13 +52,11 @@
                                     <span><i class="bi bi-arrow-left"></i> Halaman Utama</span>
                                 </a>
                             </li>
-                            <?php if ($this->uri->segment(2) == 'laporan') { ?>
                             <li class="menu-item">
                                 <a href="<?= site_url() ?>masyarakat" class="menu-link">
                                     <span><i class="bi bi-grid-fill"></i> Dashboard</span>
                                 </a>
                             </li>
-                            <?php } ?>
                             <li class="menu-item">
                                 <a href="<?= site_url() ?>lapor" class="menu-link">
                                     <span><i class="bi bi-send-fill"></i> Kirim Laporan</span>

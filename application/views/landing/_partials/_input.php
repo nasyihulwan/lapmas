@@ -12,7 +12,11 @@
                                     <i><img src="assets/images/featured-item-01.png" alt=""></i>
                                 </div> -->
                             <h3 class="features-title"> <b>Sampaikan Laporan Anda</b> </h3>
-                            <p>Isi Form Dengan Benar Agar Tidak Terjadi Kesalahan</p>
+                            <p>Isi Form Dengan Benar Agar Tidak Terjadi Kesalahan.</p>
+                            <p><b>Lihat Petunjuk Cara Mengisi Form Dengan Baik dan Benar.</b> <button type="button"
+                                    class="btn btn-outline-danger" data-toggle="modal"
+                                    data-target=".bd-example-modal-lg"><i class="fa fa-question"
+                                        aria-hidden="true"></i></button></p>
                             <div class="col-lg-12 col-md-6 col-sm-12 mt-5">
                                 <div class="contact-form">
                                     <!-- <form action="<?= site_url() ?>lapor/" method="POST"> -->
@@ -98,3 +102,21 @@
     </div>
 </section>
 <!-- ***** Features Small End ***** -->
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Petunjuk Cara Mengisi Form Dengan Baik dan Benar.</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="<?= base_url() ?>assets/landing/images/petunjuk_pengaduan.png" alt="" style="width: 100%;">
+            </div>
+        </div>
+    </div>
+</div>

@@ -26,6 +26,8 @@
                                 <td><span class="badge bg-danger">Pending</span></td>
                                 <?php } else if($l->status == 'proses') { ?>
                                 <td><span class="badge bg-warning">Proses</span></td>
+                                <?php } else if($l->status == 'tolak'){ ?>
+                                <td><span class="badge bg-danger">Ditolak</span></td>
                                 <?php } else { ?>
                                 <td><span class="badge bg-success">Selesai</span></td>
                                 <?php } ?>

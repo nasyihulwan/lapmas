@@ -78,7 +78,7 @@
                                                         Lihat Tanggapan Saya
                                                     </button>
                                                     <a href="<?= site_url() ?>laporan/pengaduan/cetakSelesai/<?= $l->id_pengaduan ?>"
-                                                        class="btn badge bg-secondary">
+                                                        class="btn badge bg-secondary" target="_blank">
                                                         <i class="fa fa-print" aria-hidden="true"></i>
                                                         Print
                                                     </a>
@@ -116,8 +116,8 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalScrollableTitle">
-                                                                <?= $l->p_id ?> - <?= $l->judul_laporan ?> -
-                                                                <?= $l->nik ?>
+                                                                Judul : <?= $l->judul_laporan ?> - Tanggal Tanggapan :
+                                                                <?php $tanggal = date("Y-m-d", strtotime($l->tgl_tanggapan)); echo tgl_indo($tanggal, true) ?>
                                                             </h5>
                                                             <button type="button" class="close" data-bs-dismiss="modal"
                                                                 aria-label="Close">
@@ -125,7 +125,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <?= $l->tanggapan ?>
+                                                            <b>ISI TANGGAPAN :</b> <br><?= $l->tanggapan ?>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-light-secondary"
@@ -208,7 +208,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h4 class="modal-title" id="myModalLabel33">
-                                                                Form Tanggapan Balik - <?= $l->id_pengaduan ?>
+                                                                Form Tanggapan Balik
                                                             </h4>
                                                             <button type="button" class="close" data-bs-dismiss="modal"
                                                                 aria-label="Close">
@@ -250,8 +250,8 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalScrollableTitle">
-                                                                <?= $l->judul_laporan ?> -
-                                                                <?= $l->tgl_pengaduan ?>
+                                                                Judul : <?= $l->judul_laporan ?> -
+                                                                Tanggal Kejadian : <?= $l->tgl_kejadian ?>
                                                             </h5>
                                                             <button type="button" class="close" data-bs-dismiss="modal"
                                                                 aria-label="Close">
@@ -373,9 +373,9 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalScrollableTitle">
-                                                                <?= $l->judul_laporan ?> -
-                                                                Tanggal Pengaduan :
-                                                                <?php $tanggal = date("Y-m-d", strtotime($l->tgl_pengaduan)); echo tgl_indo($tanggal, true) ?>
+                                                                Judul : <?= $l->judul_laporan ?> -
+                                                                Tanggal Selesai :
+                                                                <?php $tanggal = date("Y-m-d", strtotime($l->tgl_selesai)); echo tgl_indo($tanggal, true) ?>
                                                             </h5>
                                                             <button type="button" class="close" data-bs-dismiss="modal"
                                                                 aria-label="Close">
@@ -497,7 +497,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalScrollableTitle">
-                                                                <?= $l->judul_laporan ?> - Alasan Ditolak
+                                                                Judul : <?= $l->judul_laporan ?> - Alasan Ditolak
                                                             </h5>
                                                             <button type="button" class="close" data-bs-dismiss="modal"
                                                                 aria-label="Close">

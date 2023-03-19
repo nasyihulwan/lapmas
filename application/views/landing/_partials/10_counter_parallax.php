@@ -1,5 +1,5 @@
 <!-- ***** Counter Parallax Start ***** -->
-<section class="counter">
+<section class="counter" id="statistik">
     <div class="content">
         <div class="container">
             <div class="row">
