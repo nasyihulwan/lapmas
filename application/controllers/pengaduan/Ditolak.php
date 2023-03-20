@@ -25,16 +25,9 @@ class Ditolak extends CI_Controller
 
     public function hapus()
     {
-        $id = $this->uri->segment(4);
-
-        $this->db->where('id_pengaduan', $id);
-        $this->db->delete('pengaduan_ditolak');
-        $this->db->where('id_pengaduan', $id);
-        $this->db->delete('pengaduan');
-
-        $this->session->set_flashdata('deleteSuccess', 'Action Completed');
-        redirect('pengaduan/ditolak');
+        $this->M_Pengaduan->hapus();
     }
+
     public function pulihkan()
     {
         $id = $this->uri->segment(4);

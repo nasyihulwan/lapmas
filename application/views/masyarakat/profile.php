@@ -157,9 +157,9 @@ h6 {
                                         style="max-width: 150px;" alt="User-Profile-Image">
                                 </div>
                                 <h6 class="f-w-600"><?= $user['nama'] ?></h6>
-                                <button class="btn badge bg-info">
+                                <!-- <button class="btn badge bg-info">
                                     Edit
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                         <div class="col-sm-8">

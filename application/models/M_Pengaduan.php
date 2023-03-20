@@ -181,4 +181,17 @@ class M_Pengaduan extends CI_Model
         $this->db->query('SELECT * FROM pengaduan_kategori ORDER BY nama_kategori ASC');
         return $this->db->get('pengaduan_kategori')->result();
     }
+
+    function hapus()
+    {
+        $id = $this->uri->segment(4);
+
+        $this->db->where('id_pengaduan', $id);
+        $this->db->delete('pengaduan_ditolak');
+        $this->db->where('id_pengaduan', $id);
+        $this->db->delete('pengaduan');
+
+        $this->session->set_flashdata('deleteSuccess', 'Action Completed');
+        redirect('pengaduan/ditolak');
+    }
 }

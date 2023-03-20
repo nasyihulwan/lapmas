@@ -8,6 +8,7 @@ class Pengaturan extends CI_Controller
         parent::__construct();
         $this->load->model('M_Pengaduan');
         $this->load->model('M_Petugas');
+        $this->load->model('M_User');
     }
 
     public function profile()
@@ -86,24 +87,12 @@ class Pengaturan extends CI_Controller
     }
     public function updateStatusMasyarakat()
     {
-        $nik = $this->uri->segment(3);
-
-        $this->db->set('status', $this->input->post('status'));
-        $this->db->where('nik', $nik);
-        $this->db->update('masyarakat');
-
-        redirect('master/masyarakat');
+        $this->M_User->updateStatusMasyarakat();
 
     }
 
     public function updateStatusPetugas()
     {
-        $id_petugas = $this->uri->segment(3);
-
-        $this->db->set('status', $this->input->post('status'));
-        $this->db->where('id_petugas', $id_petugas);
-        $this->db->update('petugas');
-
-        redirect('master/petugas');
+        $this->M_User->updateStatusPetugas();
     }
 }

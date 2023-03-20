@@ -39,7 +39,7 @@ class M_Masyarakat extends CI_Model
             $data = [
                 'id_ulasan' => buatKode($nomorTerakhir, 1, 4),
                 'nik' => $this->session->userdata('nik'),
-                'tgl_tanggapan' => date('Y-m-d'),
+                'tgl_ulasan' => date('Y-m-d'),
                 'ulasan' => $this->input->post('ulasan'),
                 'tingkat_kepuasan' => $this->input->post('tk'),
                 'is_censored' => $is_censored
@@ -51,7 +51,7 @@ class M_Masyarakat extends CI_Model
         } else if($check_ulasan >= 1) {
             $data = [
                 'nik' => $this->session->userdata('nik'),
-                'tgl_tanggapan' => date('Y-m-d'),
+                'tgl_ulasan' => date('Y-m-d'),
                 'ulasan' => $this->input->post('ulasan'),
                 'tingkat_kepuasan' => $this->input->post('tk'),
                 'is_censored' => $is_censored

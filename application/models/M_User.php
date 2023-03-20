@@ -39,4 +39,27 @@ class M_User extends CI_Model
         return $this->db->get_where('masyarakat', ['nik' => $this->session->userdata('nik')])->row_array();
     }
 
+    function updateStatusMasyarakat()
+    {
+        $nik = $this->uri->segment(3);
+
+        $this->db->set('status', $this->input->post('status'));
+        $this->db->where('nik', $nik);
+        $this->db->update('masyarakat');
+
+        redirect('master/masyarakat');
+    }
+
+    function updateStatusPetugas()
+    {
+        $id_petugas = $this->uri->segment(3);
+
+        $this->db->set('status', $this->input->post('status'));
+        $this->db->where('id_petugas', $id_petugas);
+        $this->db->update('petugas');
+
+        redirect('master/petugas');
+    }
+
+
 }
