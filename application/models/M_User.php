@@ -11,7 +11,8 @@ class M_User extends CI_Model
             'username' => htmlspecialchars($this->input->post('username', true)),
             'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
             'status' => 'active',
-            'telp' => $this->input->post('telp')
+            'telp' => $this->input->post('telp'),
+            'alamat' => $this->input->post('alamat')
         ];
         $this->db->insert('masyarakat', $data);
         $this->session->set_flashdata('addMasyarakatSuccess', 'Action Completed');

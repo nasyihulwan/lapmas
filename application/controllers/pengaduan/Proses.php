@@ -13,7 +13,7 @@ class Proses extends CI_Controller
 
     public function index()
     {
-        $data['queryAduan'] = $this->M_Pengaduan->queryValidasiPengaduan();
+        $data['queryAduan'] = $this->M_Pengaduan->queryProsesPengaduan();
         $data['title'] = 'Data Pengaduan - Proses';
         $data['subtitle'] = 'Tindaklanjuti laporan sebelum menyelesaikan';
         

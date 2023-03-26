@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2023 at 07:32 PM
+-- Generation Time: Mar 26, 2023 at 11:55 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -32,21 +32,22 @@ CREATE TABLE `masyarakat` (
   `nama` varchar(35) NOT NULL,
   `username` varchar(25) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `status` enum('0','active','deleted') NOT NULL,
-  `telp` varchar(13) NOT NULL
+  `status` enum('active','deleted') NOT NULL,
+  `telp` varchar(13) NOT NULL,
+  `alamat` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `masyarakat`
 --
 
-INSERT INTO `masyarakat` (`nik`, `nama`, `username`, `password`, `status`, `telp`) VALUES
-('098765', 'Opet', 'opet', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', 'active', '081321314'),
-('110305', 'Nasul Satoru', 'satoru', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', 'active', '08977777'),
-('1298674189', 'Jotaro', 'jojo', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', 'active', '1241415'),
-('3273241103050003', 'Sain', 'sain', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', 'active', '089123'),
-('3273241805140005', 'Nasyih Wawan', 'anasbuek', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', 'active', '123'),
-('91857189', 'Akainu', 'akainu', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', 'active', '1214551');
+INSERT INTO `masyarakat` (`nik`, `nama`, `username`, `password`, `status`, `telp`, `alamat`) VALUES
+('098765', 'Opet', 'opet', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', 'active', '081321314', 'KAMBOJA'),
+('110305', 'Nasul Satoru', 'satoru', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', 'active', '08977777', 'BANDUNG KIDUL'),
+('1298674189', 'Jotaro', 'jojo', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', 'active', '1241415', 'ARCAMANIK'),
+('3273241103050003', 'Sain', 'sain', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', 'active', '089123', 'ANTAPANI'),
+('3273241805140005', 'Nasyih Wawan', 'anasbuek', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', 'active', '123', 'BOJONG AWI'),
+('91857189', 'Akainu', 'akainu', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', 'active', '1214551', 'CICADAS');
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,7 @@ CREATE TABLE `pengaduan` (
 
 INSERT INTO `pengaduan` (`id_pengaduan`, `tgl_pengaduan`, `tgl_kejadian`, `nik`, `judul_laporan`, `isi_laporan`, `tempat_kejadian`, `lampiran_1`, `lampiran_2`, `lampiran_3`, `kategori`, `status`) VALUES
 (17256, '2023-03-16', '2023-03-01', '3273241103050003', 'Jalan Berlubang', 'Jalan Berlubang Menggangu, Takutnya Ada Yang Celaka', 'KAMBOJA', 'jalan_berlubang.jpeg', '', '', 'KAT10001', 'selesai'),
-(28890, '2023-03-16', '2023-03-01', '3273241103050003', 'Pencurian Di Rumah', 'Pencurian barang berharga, tolong segera tangkap', 'Bojong Awi Kaler, No. 116', 'pencuri.jpeg', '', '', 'KAT10000', 'tolak');
+(28890, '2023-03-16', '2023-03-01', '3273241103050003', 'Pencurian Di Rumah', 'Pencurian barang berharga, tolong segera tangkap', 'Bojong Awi Kaler, No. 116', 'pencuri.jpeg', '', '', 'KAT10000', '0');
 
 -- --------------------------------------------------------
 
@@ -89,13 +90,6 @@ CREATE TABLE `pengaduan_ditolak` (
   `alasan` varchar(50) NOT NULL,
   `id_petugas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pengaduan_ditolak`
---
-
-INSERT INTO `pengaduan_ditolak` (`id_tolak`, `id_pengaduan`, `alasan`, `id_petugas`) VALUES
-(73224, 28890, 'ASD', 1);
 
 -- --------------------------------------------------------
 
@@ -153,7 +147,7 @@ CREATE TABLE `petugas` (
   `password` varchar(255) NOT NULL,
   `telp` varchar(13) NOT NULL,
   `level` enum('master admin','admin','petugas') NOT NULL,
-  `status` enum('0','active','deleted') NOT NULL
+  `status` enum('active','deleted') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -161,9 +155,9 @@ CREATE TABLE `petugas` (
 --
 
 INSERT INTO `petugas` (`id_petugas`, `nama_petugas`, `username`, `password`, `telp`, `level`, `status`) VALUES
-(1, 'Nasyih Pablo', 'admin', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', '08912345678', 'master admin', 'active'),
-(2, 'Wawan', 'petugas', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', '08932112421', 'petugas', 'active'),
-(39060, 'Sec Admin', 'adminsec', '$2y$10$1NfXdkHTF6zbehzsanSOou/qPdiSYW46KQTuweMpPGAmKBC/nwHLa', '12341234', 'admin', 'active');
+(1, 'Nasyih', 'master_admin', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', '08912345678', 'master admin', 'active'),
+(2, 'Pablo', 'petugas', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', '08932112421', 'petugas', 'active'),
+(39060, 'Wawan', 'admin', '$2y$10$PUjEwg2/rmLQ3CmXHcbXauCQLBVWf3MTe.w27XpxP7nHqgeoaJyVS', '12341234', 'admin', 'active');
 
 -- --------------------------------------------------------
 
@@ -197,7 +191,7 @@ INSERT INTO `tanggapan` (`id_tanggapan`, `id_pengaduan`, `tgl_tanggapan`, `tgl_t
 CREATE TABLE `ulasan_masyarakat` (
   `id_ulasan` int(11) NOT NULL,
   `nik` char(16) NOT NULL,
-  `tgl_tanggapan` date NOT NULL,
+  `tgl_ulasan` date NOT NULL,
   `ulasan` varchar(255) NOT NULL,
   `tingkat_kepuasan` enum('Sangat Puas','Puas','Kurang Puas','Tidak Puas','Sangat Tidak Puas') NOT NULL,
   `is_censored` enum('0','1') NOT NULL
@@ -207,7 +201,7 @@ CREATE TABLE `ulasan_masyarakat` (
 -- Dumping data for table `ulasan_masyarakat`
 --
 
-INSERT INTO `ulasan_masyarakat` (`id_ulasan`, `nik`, `tgl_tanggapan`, `ulasan`, `tingkat_kepuasan`, `is_censored`) VALUES
+INSERT INTO `ulasan_masyarakat` (`id_ulasan`, `nik`, `tgl_ulasan`, `ulasan`, `tingkat_kepuasan`, `is_censored`) VALUES
 (10001, '3273241805140005', '2023-03-09', 'MANTAP', 'Sangat Puas', '0'),
 (10002, '098765', '2023-03-09', 'Admin tidak ramah', 'Kurang Puas', '0'),
 (10003, '110305', '2023-03-09', 'Admin wibu, selebihnya oke', 'Puas', '1'),

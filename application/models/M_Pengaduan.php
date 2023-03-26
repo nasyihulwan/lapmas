@@ -5,39 +5,42 @@ class M_Pengaduan extends CI_Model
 {
     function queryTolakPengaduan()
     {
-        $this->db->select('*');
+        $this->db->select('*,masyarakat.nama as nama_pengadu');
         $this->db->from('pengaduan');
         $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
-        $this->db->where('status', 'tolak');
+        $this->db->join('masyarakat', 'pengaduan.nik = masyarakat.nik');
+        $this->db->where('pengaduan.status', 'tolak');
         return $this->db->get()->result();
     }
     function queryVerifikasiPengaduan()
     {
-        $this->db->select('*');
+        $this->db->select('*,masyarakat.nama as nama_pengadu');
         $this->db->from('pengaduan');
         $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
-        $this->db->where('status', '0');
+        $this->db->join('masyarakat', 'pengaduan.nik = masyarakat.nik');
+        $this->db->where('pengaduan.status', '0');
         return $this->db->get()->result();
     }
 
-    function queryValidasiPengaduan()
+    function queryProsesPengaduan()
     {
-        $this->db->select('*');
+        $this->db->select('*,masyarakat.nama as nama_pengadu');
         $this->db->from('pengaduan');
         $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
-        $this->db->where('status', 'proses');
+        $this->db->join('masyarakat', 'pengaduan.nik = masyarakat.nik');
+        $this->db->where('pengaduan.status', 'proses');
         return $this->db->get()->result();
     }
 
     function queryPengaduanSelesai()
     {
-        $this->db->select('pengaduan.id_pengaduan as p_id,pengaduan_selesai.id_pengaduan as ps_id,pengaduan.*,pengaduan_kategori.*,pengaduan_selesai.*');
+        $this->db->select('pengaduan.id_pengaduan as p_id,pengaduan_selesai.id_pengaduan as ps_id,pengaduan.*,pengaduan_kategori.*,pengaduan_selesai.*,masyarakat.nama as nama_pengadu');
         $this->db->from('pengaduan');
         $this->db->join('pengaduan_kategori', 'pengaduan.kategori = pengaduan_kategori.id');
         $this->db->join('pengaduan_selesai', 'pengaduan.id_pengaduan = pengaduan_selesai.id_pengaduan');
-        $this->db->where('status', 'selesai');
+        $this->db->join('masyarakat', 'pengaduan.nik = masyarakat.nik');
+        $this->db->where('pengaduan.status', 'selesai');
         return $this->db->get()->result();
-
     }
 
     function queryDetailPengaduan($id_pengaduan)

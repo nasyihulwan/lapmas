@@ -51,9 +51,12 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('nik', 'NIK', 'numeric|required|trim|is_unique[masyarakat.nik]', [
             'is_unique' => 'NIK already exists!'
         ]);
+        $this->form_validation->set_rules('username', 'Username', 'required|trim');
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('telp', 'Telp / Nomor Ponsel', 'numeric');
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|min_length[3]|matches[password1]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|min_length[10]');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('__partials/_head');

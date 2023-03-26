@@ -37,6 +37,7 @@
                                 <th>Nama</th>
                                 <th>Username</th>
                                 <th>No Telp</th>
+                                <th>Alamat</th>
                                 <th width="10%">Status</th>
                                 <th>Aksi</th>
                             </tr>
@@ -51,14 +52,11 @@
                                     <td><?= $m->nama ?></td>
                                     <td><?= $m->username ?></td>
                                     <td><?= $m->telp ?></td>
+                                    <td><?= $m->alamat ?></td>
                                     <td>
                                         <?php if ($m->status == 'active') { ?>
                                         <button type="button" class="btn badge bg-success">
                                             Aktif
-                                        </button>
-                                        <?php } else if($m->status == '0') { ?>
-                                        <button type="button" class="btn badge bg-warning">
-                                            Nonaktif
                                         </button>
                                         <?php } else { ?>
                                         <button type="button" class="btn badge bg-danger">
@@ -75,9 +73,6 @@
                                                         <option value="active"
                                                             <?php if ($m->status == 'active') { echo "selected"; } ?>>
                                                             Aktif</option>
-                                                        <option value="0"
-                                                            <?php if ($m->status == '0') { echo "selected"; } ?>>
-                                                            Nonaktif</option>
                                                         <option value="deleted"
                                                             <?php if ($m->status == 'deleted') { echo "selected"; } ?>>
                                                             Soft Deleted</option>

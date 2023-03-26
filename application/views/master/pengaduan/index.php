@@ -35,16 +35,14 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>ID Pengaduan</th>
                                     <th>Tanggal Pengaduan</th>
-                                    <th>Tanggal Kejadian</th>
                                     <?php if ($this->uri->segment(2) == 'selesai') { ?>
                                     <th>Tanggal Selesai</th>
                                     <?php } ?>
-                                    <th>NIK</th>
+                                    <th>Nama Pengadu</th>
                                     <th>Judul Laporan</th>
                                     <th>Kategori</th>
-                                    <?php if ($this->uri->segment(2) != 'selesai') { ?>
+                                    <?php if ($this->uri->segment(2) == 'ditolak') { ?>
                                     <th>Isi Laporan</th>
                                     <th>Lampiran</th>
                                     <?php } ?>
@@ -56,16 +54,14 @@
                                 $no = 1; foreach ($queryAduan as $r) { ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
-                                    <td><?= $r->id_pengaduan ?></td>
                                     <td><?= tgl_indo(date("Y-m-d", strtotime($r->tgl_pengaduan))) ?></td>
-                                    <td><?= tgl_indo(date("Y-m-d", strtotime($r->tgl_kejadian))) ?></td>
                                     <?php if ($this->uri->segment(2) == 'selesai') { ?>
                                     <td><?= tgl_indo(date("Y-m-d", strtotime($r->tgl_selesai))) ?></td>
                                     <?php } ?>
-                                    <td><?= $r->nik ?></td>
+                                    <td><?= $r->nama_pengadu ?></td>
                                     <td><?= $r->judul_laporan ?></td>
                                     <td><?= $r->nama_kategori ?></td>
-                                    <?php if ($this->uri->segment(2) != 'selesai') { ?>
+                                    <?php if ($this->uri->segment(2) == 'ditolak') { ?>
                                     <td>
                                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModalScrollable<?= $r->id_pengaduan ?>">

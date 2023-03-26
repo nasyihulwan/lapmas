@@ -13,12 +13,7 @@
                     <p class="text-subtitle text-muted"><?= $subtitle ?>
                     </p>
                 </div>
-
-
-
                 <?php $this->load->view("__partials/_breadcrumb.php") ?>
-
-
             </div>
         </div>
 

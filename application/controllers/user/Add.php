@@ -61,6 +61,7 @@ class Add extends CI_Controller
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|min_length[3]|matches[password1]');
         $this->form_validation->set_rules('telp', 'Nomor Ponsel', 'numeric|required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('__partials/_head');

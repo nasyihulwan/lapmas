@@ -10,7 +10,8 @@ class M_Auth extends CI_Model
             'nama' => htmlspecialchars($this->input->post('nama', true)),
             'username' => htmlspecialchars($this->input->post('username', true)),
             'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-            'telp' => $this->input->post('telp')
+            'telp' => $this->input->post('telp'),
+            'alamat' => $this->input->post('alamat')
         ];
         $this->db->insert('masyarakat', $data);
         $this->session->set_flashdata('message', '<div class="card-header"><h4 class="card-title">Akun berhasil dibuat! Silahkan Login.</h4></div>');

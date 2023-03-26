@@ -54,6 +54,15 @@
                                 <i class="bi bi-phone"></i>
                             </div>
                         </div>
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <!-- <input type="text" class="form-control form-control-xl" name="alamat" placeholder="Alamat"> -->
+                            <textarea class="form-control form-control-xl" name="alamat" cols="30" rows="3"
+                                placeholder="Alamat" maxlength="50"></textarea>
+                            <?= form_error('alamat', '<small class="text-danger pl-2">', '</small>') ?>
+                            <div class="form-control-icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Sign Up</button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
